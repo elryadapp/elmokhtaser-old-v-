@@ -142,7 +142,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                                           PaymentInfoRow(
                                             title: 'total_cost'.tr(),
                                             info:
-                                                '${CartCubit.get(context).cartModel!.total}\t' +
+                                                '${ CartCubit.get(context).cartModel!.total}\t' +
                                                     'RS'.tr(),
                                             titleColor: AppUi.colors.buttonColor
                                                 .withOpacity(.8),

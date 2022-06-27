@@ -59,7 +59,7 @@
     "logout": "تسجيل الخروج",
     "setting": "اعدادات الحساب",
     "Affiliate_Marketing": "التسويق بالعمولة",
-    "login_alert": "ليس لديك اى دورات من فضلك سجل دخولك اولا",
+    "login_alert": "من فضلك سجل دخولك اولا",
     "finished_couses_alert": "لا يوحد لديك كورسات ",
     "inprogress": "جارية",
     "finished": "منتهية",
@@ -238,5 +238,7 @@
   "visitor_login":"الدخول كزائر",
   "add_rate":"اضافة تقييم",
   "or":"او",
-  "update_rate":"تعديل التقييم"
+  "update_rate":"تعديل التقييم",
+  "select_the_rate_first":"من فضلك اختر تقييم اولا",
+  "add_a_comment_first":"من فضلك اضف تعليق اولا"
 }

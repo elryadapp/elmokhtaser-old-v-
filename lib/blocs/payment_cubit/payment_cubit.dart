@@ -85,7 +85,6 @@ class PaymentCubit extends Cubit<PaymentState> {
     emit(BankTransferLoadingState());
     try {
      
-          CartCubit.get(context).cartItemList.map((e) => e.id!).toList();
       List<int> courseIds =
           CartCubit.get(context).cartItemList.map((e) => e.courseId!).toList();
       List<dynamic> coupon =

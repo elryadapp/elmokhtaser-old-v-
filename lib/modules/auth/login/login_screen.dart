@@ -147,7 +147,7 @@ class LoginScreen extends StatelessWidget {
                       Center(
                         child: InkWell(
                           onTap: () {
-                            Navigator.pushNamed(context, Routes.layout);
+                            Navigator.pushReplacementNamed(context, Routes.layout);
                           },
                           child: AppText('visitor_login'.tr(),
                               fontSize: 14.sp,

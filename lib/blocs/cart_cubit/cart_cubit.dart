@@ -35,6 +35,7 @@ couponController=List.generate(cartItemList.length,(index)=>TextEditingControlle
     }
   }
 
+
   //=====================delete cart item=====================
   Future<void> deleteCartItem(cartItemId, context) async {
     emit(DeleteCartItemLoadingState());

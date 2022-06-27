@@ -60,7 +60,7 @@
 "logout":"Logout",
 "setting":"Setting",
 "Affiliate_Marketing":"Affiliate Marketing",
-"login_alert":"Please login first to view you courses",
+"login_alert":"Please login first to view this content",
 "finished_couses_alert":"There are No courses yet",
 "inprogress":"In Progress",
 "All":"All"
@@ -242,7 +242,9 @@
 "visitor_login":"Login as visitor",
 "add_rate":"Add Rate",
 "or":"OR",
-"update_rate":"Update Rate"
+"update_rate":"Update Rate",
+"select_the_rate_first":"select the rate first",
+"add_a_comment_first":"please select comment first"
 
 
 

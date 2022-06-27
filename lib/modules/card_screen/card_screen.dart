@@ -1,11 +1,13 @@
 import 'package:buildcondition/buildcondition.dart';
 import 'package:elmoktaser_elshamel/blocs/cart_cubit/cart_cubit.dart';
+import 'package:elmoktaser_elshamel/layout/visitor_screen.dart';
 import 'package:elmoktaser_elshamel/modules/card_screen/components/card_item.dart';
 import 'package:elmoktaser_elshamel/routes/app_routes.dart';
 import 'package:elmoktaser_elshamel/shared/components/animated_page.dart';
 import 'package:elmoktaser_elshamel/shared/components/app_app_bar.dart';
 import 'package:elmoktaser_elshamel/shared/components/app_btn.dart';
 import 'package:elmoktaser_elshamel/shared/components/app_text.dart';
+import 'package:elmoktaser_elshamel/shared/constants.dart';
 import 'package:elmoktaser_elshamel/shared/utilities/app_ui.dart';
 import 'package:elmoktaser_elshamel/shared/utilities/app_util.dart';
 import 'package:flutter/material.dart';
@@ -24,8 +26,10 @@ class _CardScreenState extends State<CardScreen> {
   @override
   void initState() {
     var cubit = CartCubit.get(context);
-
+if(Constants.token!=''){
     cubit.getAllCartItems(context);
+
+}
 
     super.initState();
   }
@@ -49,7 +53,9 @@ class _CardScreenState extends State<CardScreen> {
            
               builder: (context) =>AppUtil.appLoader(height: 18.h),
               fallback: (context) {
-                return cubit.cartItemList.isEmpty?
+                return Constants.token==''?
+                const VisitorScreen() 
+                :cubit.cartItemList.isEmpty?
                  Column(
                     children: [
                       AppSlideAnimation(
@@ -95,7 +101,8 @@ class _CardScreenState extends State<CardScreen> {
                                     'total_cost'.tr() + ' : ',
                                   ),
                                   const Spacer(),
-                                  AppText('${cubit.cartModel!.total}\t' + 'RS'.tr(),
+
+                                  AppText('${ cubit.cartModel!.total}\t' + 'RS'.tr(),
                                       fontWeight: FontWeight.w700)
                                 ],
                               ),

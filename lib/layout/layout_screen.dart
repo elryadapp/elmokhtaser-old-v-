@@ -163,10 +163,7 @@ class _LayoutScreenState extends State<LayoutScreen>
             body: WillPopScope(
                 child: cubit.pages[cubit.currentPageIndex],
                 onWillPop: () async {
-                  if(Constants.token==''){
-                   return true;
-                  }
-                 else if (cubit.currentPageIndex != 0) {
+                 if (cubit.currentPageIndex != 0) {
                     cubit.changeCurrentPageIndex(0);
                     return false;
                   } else {
