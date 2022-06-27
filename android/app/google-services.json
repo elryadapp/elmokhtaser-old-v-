@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "792118650082",
+    "project_id": "elmoktaser",
+    "storage_bucket": "elmoktaser.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:792118650082:android:9acac281b89ecb8fd66abb",
+        "android_client_info": {
+          "package_name": "com.elryad.elmoktaser"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "792118650082-9oega1phuom9ov24bnvf48ic2v071oj6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCWxn3TTS3dhSnnyUGRtuWB79CrIMJqdOU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "792118650082-9oega1phuom9ov24bnvf48ic2v071oj6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
