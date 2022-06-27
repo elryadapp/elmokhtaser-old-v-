@@ -1,5 +1,5 @@
-import 'package:elmoktaser_elshamel/shared/components/app_text.dart';
-import 'package:elmoktaser_elshamel/shared/utilities/app_ui.dart';
+import 'package:elmoktaser_elshamel/modules/general_test_screens/_exports.dart';
+
 import 'package:flutter/material.dart';
 
 class TestInfoRow extends StatelessWidget {

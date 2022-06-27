@@ -1,12 +1,7 @@
-import 'package:elmoktaser_elshamel/models/courses_model.dart';
-import 'package:elmoktaser_elshamel/shared/components/app_text.dart';
-import 'package:elmoktaser_elshamel/shared/components/expanded_list.dart';
-import 'package:elmoktaser_elshamel/shared/constants.dart';
-import 'package:elmoktaser_elshamel/shared/utilities/app_ui.dart';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
-import 'package:sizer/sizer.dart';
-import 'package:easy_localization/easy_localization.dart';
+import 'package:elmoktaser_elshamel/modules/courses_screens/_exports.dart';
+
 
 class DescriptionTab extends StatelessWidget {
   final CoursesItem courseItem;

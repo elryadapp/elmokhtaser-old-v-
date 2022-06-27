@@ -1,12 +1,7 @@
-import 'package:elmoktaser_elshamel/models/user_exam_model.dart';
-import 'package:elmoktaser_elshamel/modules/general_test_screens/components/test_info_row.dart';
-import 'package:elmoktaser_elshamel/routes/app_routes.dart';
-import 'package:elmoktaser_elshamel/shared/components/app_btn.dart';
-import 'package:elmoktaser_elshamel/shared/components/app_text.dart';
-import 'package:elmoktaser_elshamel/shared/utilities/app_ui.dart';
+import 'package:elmoktaser_elshamel/modules/general_test_screens/_exports.dart';
+
 import 'package:flutter/material.dart';
-import 'package:sizer/sizer.dart';
-import 'package:easy_localization/easy_localization.dart';
+
 
 class GeneralTestCard extends StatelessWidget {
   final UserExamItem generalExamItem;

@@ -1,23 +1,6 @@
-import 'package:buildcondition/buildcondition.dart';
-import 'package:elmoktaser_elshamel/blocs/cart_cubit/cart_cubit.dart';
-import 'package:elmoktaser_elshamel/blocs/courses_cubit/courses_cubit.dart';
-import 'package:elmoktaser_elshamel/modules/courses_screens/course_details_screens/coures_content_tab.dart';
-import 'package:elmoktaser_elshamel/modules/courses_screens/course_details_screens/course_public_bag_tab.dart';
-import 'package:elmoktaser_elshamel/modules/courses_screens/course_details_screens/description_tab.dart';
-import 'package:elmoktaser_elshamel/modules/courses_screens/course_details_screens/question_answers_tab.dart';
-import 'package:elmoktaser_elshamel/modules/courses_screens/course_details_screens/rating_tab.dart';
-import 'package:elmoktaser_elshamel/modules/courses_screens/course_details_screens/custom_video.dart';
-import 'package:elmoktaser_elshamel/routes/app_routes.dart';
-import 'package:elmoktaser_elshamel/shared/components/app_app_bar.dart';
-import 'package:elmoktaser_elshamel/shared/components/app_btn.dart';
-import 'package:elmoktaser_elshamel/shared/components/app_text.dart';
-import 'package:elmoktaser_elshamel/shared/constants.dart';
-import 'package:elmoktaser_elshamel/shared/utilities/app_ui.dart';
-import 'package:elmoktaser_elshamel/shared/utilities/app_util.dart';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sizer/sizer.dart';
-import 'package:easy_localization/easy_localization.dart';
+import 'package:elmoktaser_elshamel/modules/courses_screens/_exports.dart';
 
 class CourseDetailsScreen extends StatefulWidget {
   final dynamic coursesItem;

@@ -1,9 +1,7 @@
-import 'package:elmoktaser_elshamel/blocs/courses_cubit/courses_cubit.dart';
-import 'package:elmoktaser_elshamel/models/courses_model.dart';
-import 'package:elmoktaser_elshamel/shared/constants.dart';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_html/flutter_html.dart';
+import 'package:elmoktaser_elshamel/modules/courses_screens/_exports.dart';
+
 
 class CoursePublicBagTab extends StatelessWidget {
   final CoursesItem coursesItem;

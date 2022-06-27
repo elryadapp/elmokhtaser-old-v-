@@ -1,14 +1,7 @@
-import 'package:elmoktaser_elshamel/blocs/courses_cubit/courses_cubit.dart';
-import 'package:elmoktaser_elshamel/models/courses_model.dart';
-import 'package:elmoktaser_elshamel/modules/courses_screens/course_container.dart';
-import 'package:elmoktaser_elshamel/routes/app_routes.dart';
-import 'package:elmoktaser_elshamel/shared/components/app_text.dart';
-import 'package:elmoktaser_elshamel/shared/utilities/app_ui.dart';
-import 'package:elmoktaser_elshamel/shared/utilities/app_util.dart';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sizer/sizer.dart';
-import 'package:easy_localization/easy_localization.dart';
+import 'package:elmoktaser_elshamel/modules/courses_screens/_exports.dart';
+
 class AppList extends StatefulWidget {
   final List<CoursesItem> coursesList;
   final int? catId;

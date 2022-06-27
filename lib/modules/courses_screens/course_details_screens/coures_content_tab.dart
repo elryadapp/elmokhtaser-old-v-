@@ -1,13 +1,7 @@
-import 'package:buildcondition/buildcondition.dart';
-import 'package:elmoktaser_elshamel/blocs/courses_cubit/courses_cubit.dart';
-import 'package:elmoktaser_elshamel/shared/components/app_list_tile.dart';
-import 'package:elmoktaser_elshamel/shared/components/app_text.dart';
-import 'package:elmoktaser_elshamel/shared/utilities/app_ui.dart';
-import 'package:elmoktaser_elshamel/shared/utilities/app_util.dart';
-import 'package:elmoktaser_elshamel/shared/utilities/icon_broken.dart';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sizer/sizer.dart';
+import 'package:elmoktaser_elshamel/modules/courses_screens/_exports.dart';
+
 
 class CouresContentTab extends StatelessWidget {
   const CouresContentTab({

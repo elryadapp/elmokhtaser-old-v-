@@ -1,7 +1,6 @@
-import 'package:elmoktaser_elshamel/shared/components/app_text.dart';
-import 'package:elmoktaser_elshamel/shared/utilities/app_ui.dart';
+
 import 'package:flutter/material.dart';
-import 'package:sizer/sizer.dart';
+import 'package:elmoktaser_elshamel/modules/general_screens/_exports.dart';
 class RowBtn extends StatelessWidget {
   final String route;
   final String title;

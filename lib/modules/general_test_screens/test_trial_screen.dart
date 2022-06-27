@@ -1,14 +1,6 @@
-import 'package:buildcondition/buildcondition.dart';
-import 'package:elmoktaser_elshamel/blocs/tests_cubit/tests_cubit.dart';
-import 'package:elmoktaser_elshamel/modules/general_test_screens/components/test_trial_expantion_tile.dart';
-import 'package:elmoktaser_elshamel/shared/components/app_app_bar.dart';
-import 'package:easy_localization/easy_localization.dart';
-import 'package:elmoktaser_elshamel/shared/components/app_text.dart';
-import 'package:elmoktaser_elshamel/shared/utilities/app_ui.dart';
-import 'package:elmoktaser_elshamel/shared/utilities/app_util.dart';
+import 'package:elmoktaser_elshamel/modules/general_test_screens/_exports.dart';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sizer/sizer.dart';
 
 class TestTrialScreen extends StatefulWidget {
   final dynamic contentChild;

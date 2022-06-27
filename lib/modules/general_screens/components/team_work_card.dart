@@ -1,8 +1,6 @@
-import 'package:elmoktaser_elshamel/models/general_models/team_model.dart';
-import 'package:elmoktaser_elshamel/shared/components/app_text.dart';
-import 'package:elmoktaser_elshamel/shared/utilities/app_ui.dart';
+
 import 'package:flutter/material.dart';
-import 'package:sizer/sizer.dart';
+import 'package:elmoktaser_elshamel/modules/general_screens/_exports.dart';
 
 class TeamWorkCard extends StatelessWidget {
   final TeamItem team;

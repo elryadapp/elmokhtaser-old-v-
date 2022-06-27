@@ -1,7 +1,6 @@
-import 'package:elmoktaser_elshamel/modules/general_screens/components/news_detail_card.dart';
-import 'package:elmoktaser_elshamel/shared/components/app_app_bar.dart';
+
 import 'package:flutter/material.dart';
-import 'package:easy_localization/easy_localization.dart';
+import 'package:elmoktaser_elshamel/modules/general_screens/_exports.dart';
 class NewsDetailsScreen extends StatelessWidget {
   final dynamic newsId;
   const NewsDetailsScreen({Key? key, required this.newsId}) : super(key: key);

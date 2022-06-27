@@ -1,11 +1,7 @@
-import 'package:better_player/better_player.dart';
-import 'package:elmoktaser_elshamel/blocs/courses_cubit/courses_cubit.dart';
-import 'package:elmoktaser_elshamel/shared/constants.dart';
-import 'package:elmoktaser_elshamel/shared/components/custom_video/custom_video.dart';
-import 'package:elmoktaser_elshamel/shared/utilities/app_ui.dart';
-import 'package:elmoktaser_elshamel/shared/utilities/app_util.dart';
+
 import 'package:flutter/material.dart';
-import 'package:sizer/sizer.dart';
+import 'package:elmoktaser_elshamel/modules/courses_screens/_exports.dart';
+
 
 class CustomVideo extends StatefulWidget {
   final String? videoId;
