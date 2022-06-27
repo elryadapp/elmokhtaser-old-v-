@@ -1,14 +1,7 @@
-import 'package:buildcondition/buildcondition.dart';
-import 'package:elmoktaser_elshamel/blocs/auth_cubit/auth_cubit.dart';
-import 'package:elmoktaser_elshamel/shared/components/app_btn.dart';
-import 'package:elmoktaser_elshamel/shared/components/app_text.dart';
-import 'package:elmoktaser_elshamel/shared/components/app_text_form.dart';
-import 'package:elmoktaser_elshamel/shared/utilities/app_ui.dart';
-import 'package:elmoktaser_elshamel/shared/utilities/app_util.dart';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sizer/sizer.dart';
-import 'package:easy_localization/easy_localization.dart';
+import 'package:elmoktaser_elshamel/modules/auth/_exports.dart';
+
 class VerificationScreen extends StatelessWidget {
   const VerificationScreen({Key? key}) : super(key: key);
 

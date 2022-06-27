@@ -1,26 +1,5 @@
-import 'package:elmoktaser_elshamel/blocs/auth_cubit/auth_cubit.dart';
-import 'package:elmoktaser_elshamel/blocs/cart_cubit/cart_cubit.dart';
-import 'package:elmoktaser_elshamel/blocs/layout_cubit/layout_cubit.dart';
-import 'package:elmoktaser_elshamel/blocs/notification_cubit/notification_cubit.dart';
-import 'package:elmoktaser_elshamel/routes/app_routes.dart';
-import 'package:elmoktaser_elshamel/shared/components/app_app_bar.dart';
-import 'package:elmoktaser_elshamel/shared/components/app_btn.dart';
-import 'package:elmoktaser_elshamel/shared/components/app_text.dart';
-
-import 'package:elmoktaser_elshamel/shared/components/custom_nav_bar/bottom_nav.dart';
-import 'package:elmoktaser_elshamel/shared/components/custom_nav_bar/bottom_nav_item.dart';
-import 'package:elmoktaser_elshamel/shared/constants.dart';
-import 'package:elmoktaser_elshamel/shared/network/remote/notification_helper.dart';
-import 'package:elmoktaser_elshamel/shared/utilities/app_ui.dart';
-import 'package:easy_localization/easy_localization.dart';
-import 'package:elmoktaser_elshamel/shared/utilities/app_util.dart';
-import 'package:elmoktaser_elshamel/shared/utilities/icon_broken.dart';
+import '_exports.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lottie/lottie.dart';
-import 'package:sizer/sizer.dart';
-
 class LayoutScreen extends StatefulWidget {
   const LayoutScreen({Key? key}) : super(key: key);
 
@@ -69,8 +48,8 @@ class _LayoutScreenState extends State<LayoutScreen>
       'profile'.tr(),
       'More'.tr(),
     ];
-   NotificationHelper.controller = AnimationController(vsync: this);
- 
+    NotificationHelper.controller = AnimationController(vsync: this);
+
     super.initState();
   }
 
@@ -113,48 +92,50 @@ class _LayoutScreenState extends State<LayoutScreen>
                     ],
                   ),
                 ),
-             if(cubit.currentPageIndex!=2)   InkWell(
-                  onTap: () {
-                    cubit.changeCurrentPageIndex(2);
-                    Navigator.pushNamed(context, Routes.layout);
-                  },
-                  child: Stack(
-                    alignment: AlignmentDirectional.topStart,
-                    children: [
-                      Lottie.asset(
-                        AppUi.assets.lottieNotification,
-                        height: 6.h,
-                        controller:NotificationHelper.controller,
-                        onLoaded: (composition) {
-                       NotificationHelper.controller!.duration =const Duration(milliseconds: 500);
-                        },
-                      ),
-                      PositionedDirectional(
-                        start: 1.5.w,
-                        top: .5.h,
-                        child: CircleAvatar(
-                          radius: 2.5.w,
-                          child: AppText(
-                            '${NotificationCubit.get(context).unreadedNotification.length}',
-                            fontSize: 8.sp,
-                            textAlign: TextAlign.center,
-                            color: NotificationCubit.get(context)
+                if (cubit.currentPageIndex != 2)
+                  InkWell(
+                    onTap: () {
+                      cubit.changeCurrentPageIndex(2);
+                      Navigator.pushNamed(context, Routes.layout);
+                    },
+                    child: Stack(
+                      alignment: AlignmentDirectional.topStart,
+                      children: [
+                        Lottie.asset(
+                          AppUi.assets.lottieNotification,
+                          height: 6.h,
+                          controller: NotificationHelper.controller,
+                          onLoaded: (composition) {
+                            NotificationHelper.controller!.duration =
+                                const Duration(milliseconds: 500);
+                          },
+                        ),
+                        PositionedDirectional(
+                          start: 1.5.w,
+                          top: .5.h,
+                          child: CircleAvatar(
+                            radius: 2.5.w,
+                            child: AppText(
+                              '${NotificationCubit.get(context).unreadedNotification.length}',
+                              fontSize: 8.sp,
+                              textAlign: TextAlign.center,
+                              color: NotificationCubit.get(context)
+                                      .unreadedNotification
+                                      .isNotEmpty
+                                  ? AppUi.colors.whiteColor
+                                  : Colors.transparent,
+                              fontWeight: FontWeight.w600,
+                            ),
+                            backgroundColor: NotificationCubit.get(context)
                                     .unreadedNotification
                                     .isNotEmpty
-                                ? AppUi.colors.whiteColor
+                                ? AppUi.colors.buttonColor
                                 : Colors.transparent,
-                            fontWeight: FontWeight.w600,
                           ),
-                          backgroundColor: NotificationCubit.get(context)
-                                  .unreadedNotification
-                                  .isNotEmpty
-                              ? AppUi.colors.buttonColor
-                              : Colors.transparent,
-                        ),
-                      )
-                    ],
+                        )
+                      ],
+                    ),
                   ),
-                ),
               ],
               isTitleCenterd: cubit.currentPageIndex == 0 ? false : true,
               titleText: pageTitlesList[cubit.currentPageIndex],
@@ -163,7 +144,7 @@ class _LayoutScreenState extends State<LayoutScreen>
             body: WillPopScope(
                 child: cubit.pages[cubit.currentPageIndex],
                 onWillPop: () async {
-                 if (cubit.currentPageIndex != 0) {
+                  if (cubit.currentPageIndex != 0) {
                     cubit.changeCurrentPageIndex(0);
                     return false;
                   } else {

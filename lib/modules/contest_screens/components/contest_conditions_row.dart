@@ -1,7 +1,7 @@
-import 'package:elmoktaser_elshamel/shared/components/app_text.dart';
-import 'package:elmoktaser_elshamel/shared/utilities/app_ui.dart';
+import 'package:elmoktaser_elshamel/modules/contest_screens/_exports.dart';
+
 import 'package:flutter/material.dart';
-import 'package:sizer/sizer.dart';
+
 class ContestConditionsRow extends StatelessWidget {
   final String title;
   const ContestConditionsRow({ Key? key, required this.title }) : super(key: key);

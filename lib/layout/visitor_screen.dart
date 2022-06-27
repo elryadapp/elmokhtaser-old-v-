@@ -1,9 +1,6 @@
-import 'package:elmoktaser_elshamel/routes/app_routes.dart';
-import 'package:elmoktaser_elshamel/shared/components/app_btn.dart';
-import 'package:elmoktaser_elshamel/shared/components/app_text.dart';
+import '_exports.dart';
 import 'package:flutter/material.dart';
-import 'package:easy_localization/easy_localization.dart';
-import 'package:sizer/sizer.dart';
+
 
 class VisitorScreen extends StatelessWidget {
   const VisitorScreen({

@@ -1,18 +1,5 @@
-import 'package:buildcondition/buildcondition.dart';
-import 'package:elmoktaser_elshamel/blocs/auth_cubit/auth_cubit.dart';
-import 'package:elmoktaser_elshamel/routes/app_routes.dart';
-import 'package:elmoktaser_elshamel/shared/components/animated_page.dart';
-import 'package:elmoktaser_elshamel/shared/components/app_btn.dart';
-import 'package:elmoktaser_elshamel/shared/components/app_text.dart';
-import 'package:elmoktaser_elshamel/shared/components/app_text_form.dart';
-import 'package:elmoktaser_elshamel/shared/utilities/app_ui.dart';
-import 'package:elmoktaser_elshamel/shared/utilities/app_util.dart';
-import 'package:elmoktaser_elshamel/shared/utilities/icon_broken.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sizer/sizer.dart';
-import 'package:easy_localization/easy_localization.dart';
-
+import 'package:elmoktaser_elshamel/modules/auth/_exports.dart';
 class LoginScreen extends StatelessWidget {
   const LoginScreen({Key? key}) : super(key: key);
 

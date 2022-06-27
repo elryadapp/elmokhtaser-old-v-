@@ -1,15 +1,6 @@
-import 'package:easy_localization/easy_localization.dart';
-import 'package:elmoktaser_elshamel/blocs/profile_cubit/profile_cubit.dart';
-import 'package:elmoktaser_elshamel/modules/certificates_screens/components/certificate_image.dart';
-import 'package:elmoktaser_elshamel/routes/app_routes.dart';
-import 'package:elmoktaser_elshamel/shared/components/app_app_bar.dart';
-import 'package:elmoktaser_elshamel/shared/components/app_btn.dart';
-import 'package:elmoktaser_elshamel/shared/components/app_text.dart';
-import 'package:elmoktaser_elshamel/shared/utilities/app_ui.dart';
-import 'package:elmoktaser_elshamel/shared/utilities/icon_broken.dart';
+import 'package:elmoktaser_elshamel/modules/certificates_screens/_exports.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sizer/sizer.dart';
+
 
 class CertificateViewScreen extends StatefulWidget {
   final dynamic certificateItem;

@@ -1,19 +1,6 @@
-import 'package:buildcondition/buildcondition.dart';
-import 'package:elmoktaser_elshamel/blocs/cart_cubit/cart_cubit.dart';
-import 'package:elmoktaser_elshamel/layout/visitor_screen.dart';
-import 'package:elmoktaser_elshamel/modules/card_screen/components/card_item.dart';
-import 'package:elmoktaser_elshamel/routes/app_routes.dart';
-import 'package:elmoktaser_elshamel/shared/components/animated_page.dart';
-import 'package:elmoktaser_elshamel/shared/components/app_app_bar.dart';
-import 'package:elmoktaser_elshamel/shared/components/app_btn.dart';
-import 'package:elmoktaser_elshamel/shared/components/app_text.dart';
-import 'package:elmoktaser_elshamel/shared/constants.dart';
-import 'package:elmoktaser_elshamel/shared/utilities/app_ui.dart';
-import 'package:elmoktaser_elshamel/shared/utilities/app_util.dart';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sizer/sizer.dart';
-import 'package:easy_localization/easy_localization.dart';
+import 'package:elmoktaser_elshamel/modules/card_screen/_exports.dart';
 
 class CardScreen extends StatefulWidget {
   const CardScreen({Key? key}) : super(key: key);

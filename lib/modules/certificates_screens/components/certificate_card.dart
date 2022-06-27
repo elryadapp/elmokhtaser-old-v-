@@ -1,12 +1,7 @@
-import 'package:easy_localization/easy_localization.dart';
-import 'package:elmoktaser_elshamel/models/auth_models/user_certificates_model.dart';
-import 'package:elmoktaser_elshamel/modules/general_screens/components/row_btn.dart';
-import 'package:elmoktaser_elshamel/routes/app_routes.dart';
-import 'package:elmoktaser_elshamel/shared/components/app_text.dart';
-import 'package:elmoktaser_elshamel/shared/utilities/app_ui.dart';
-import 'package:elmoktaser_elshamel/shared/utilities/icon_broken.dart';
+
 import 'package:flutter/material.dart';
-import 'package:sizer/sizer.dart';
+import 'package:elmoktaser_elshamel/modules/certificates_screens/_exports.dart';
+
 class CertificateCard extends StatelessWidget {
   final CertificateItem certificateItem;
   const CertificateCard({Key? key, required this.certificateItem}) : super(key: key);
