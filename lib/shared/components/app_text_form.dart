@@ -23,6 +23,7 @@ class AppTextFormFeild extends StatelessWidget {
   final Widget? prefixIcon;
   final int? maxLines, maxLength;
   final double? radius;
+  final String? initialValue;
   final TextAlign? textAlign;
   final dynamic inputFormatters;
   final Color? borderColor;
@@ -48,7 +49,7 @@ class AppTextFormFeild extends StatelessWidget {
       this.isFilled = true,
       this.maxLength,
       this.validation = false,
-      this.inputFormatters, this.validator, 
+      this.inputFormatters, this.validator, this.initialValue, 
 })      : super(key: key);
 
   @override
@@ -58,6 +59,7 @@ class AppTextFormFeild extends StatelessWidget {
       keyboardType: textInputType,
       controller: controller,
       obscureText: obscureText,
+    initialValue: initialValue,
       maxLength: maxLength,
       enabled: isEnable ?? true,
       onTap: onTap,

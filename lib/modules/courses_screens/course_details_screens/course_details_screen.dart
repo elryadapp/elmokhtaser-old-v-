@@ -154,12 +154,7 @@ class _CourseDetailsScreenState extends State<CourseDetailsScreen>
                               CartCubit.get(context).addToCartItem(
                                   widget.coursesItem.id, context);
                               Navigator.pushNamed(context, Routes.card);
-                              // Navigator.pushNamedAndRemoveUntil(
-                              //   context,
-                              //   Routes.courseDetails,
-                              //   ModalRoute.withName(Routes.layout),
-                              //   arguments: widget.coursesItem,
-                              // );}
+                       
                             }
                           }
                         },
@@ -173,7 +168,7 @@ class _CourseDetailsScreenState extends State<CourseDetailsScreen>
                           padding: EdgeInsets.symmetric(horizontal: 7.w),
                           child: Row(
                             children: [
-                            Icon(Icons.shopping_cart_outlined,color: AppUi.colors.mainColor,),
+                            Icon(Icons.shopping_cart_outlined,color: AppUi.colors.whiteColor,),
                               const Spacer(),
                               cubit.active == null &&
                                       widget.coursesItem.subscribed

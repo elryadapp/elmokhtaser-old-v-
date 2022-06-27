@@ -173,12 +173,16 @@ class Comments {
   String? user;
   String? course;
   String? rating;
+  int? id;
+  bool? me;
 
-  Comments({this.comment, this.user, this.course,this.rating});
+  Comments({this.comment,this.id,this.me, this.user, this.course,this.rating});
 
   Comments.fromJson(Map<String, dynamic> json) {
     comment = json["comment"];
     user = json["user"];
+    id=json['id'];
+    me=json['me'];
     rating=json['rating'];
     course = json["course"];
   }
@@ -187,6 +191,8 @@ class Comments {
     final  data = <String, dynamic>{};
     data["comment"] = comment;
     data['rating']=rating;
+    data['id']=id;
+    data['me']=me;
     data["user"] =    user;
     data["course"] =  course;
     return data;

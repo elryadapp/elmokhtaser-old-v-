@@ -235,7 +235,7 @@ class CoursesCubit extends Cubit<CoursesState> {
 
   CourseContentModel? singleCourseContentmodel;
   List<CourseContentSection>? singleCourseContentItem = [];
-  Future<void> getCourseContentById( courseId) async {
+  Future<void> getCourseContentById(courseId) async {
     singleCourseContentItem = [];
     emit(GetCourseContentLoadingState());
     try {
@@ -328,28 +328,47 @@ class CoursesCubit extends Cubit<CoursesState> {
 
 //======================ratings=====================
   TextEditingController commentTextEditingController = TextEditingController();
-  double rate=0;
+  double rate = 0;
   Future<void> addRate(courseId) async {
     emit(AddRateLoadingState());
     try {
-      var res = await CoursesRepositories.addRateToCourse(courseId,{
-      "comment":commentTextEditingController.text,
-        "rating":rate
+      var res = await CoursesRepositories.addRateToCourse(courseId,
+          {"comment": commentTextEditingController.text, "rating": rate});
+      getCourseContentById(courseId);
+      if (res['status'] < 300) {
+        AppUtil.flushbarNotification(res['data']);
+        emit(AddRateLoadedState());
+      } else {
+        AppUtil.flushbarNotification(res['data']);
 
-      });
-      getCourseContentById( courseId);
-if(res['status']<300){
-  AppUtil.flushbarNotification(res['data']);
-      emit(AddRateLoadedState());
-}
-else{
-    AppUtil.flushbarNotification(res['data']);
-
-       emit(AddRateErrorState());
- 
-}
+        emit(AddRateErrorState());
+      }
     } catch (error) {
       emit(AddRateErrorState());
+    }
+  }
+
+  Future<void> updateRate(rateId, courseId) async {
+    emit(UpdateRateLoadingState());
+    try {
+      var res = await CoursesRepositories.updateRateingToCourse(rateId, {
+        "comment": commentTextEditingController.text,
+        "rating": rate,
+        "_method": "PUT"
+      });
+      if (res['status'] < 300) {
+       getCourseContentById(courseId);
+
+        AppUtil.flushbarNotification(res['data']);
+
+        emit(UpdateRateLoadedState());
+      } else {
+        AppUtil.flushbarNotification(res['data']);
+
+        emit(UpdateRateErrorState());
+      }
+    } catch (error) {
+      emit(UpdateRateErrorState());
     }
   }
 }

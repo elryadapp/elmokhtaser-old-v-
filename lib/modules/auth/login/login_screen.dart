@@ -125,30 +125,38 @@ class LoginScreen extends StatelessWidget {
                             Navigator.pushNamed(context, Routes.register),
                       ),
                       Padding(
-                        padding:  EdgeInsets.symmetric(vertical: 3.h),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-Container(color: AppUi.colors.subTitleColor,height: 1.2,width:7.w),
-                            AppText('OR', fontSize: 14.sp,
-                              fontWeight: FontWeight.w600,),
-Container(color: AppUi.colors.subTitleColor,height: 1.2,width:7.w),
-                          ],
-                        )
-                      ),
-                      Center(
-                          child: InkWell(
-                            onTap: (){
-                              Navigator.pushNamed(context, Routes.layout);
-                            },
-                            child: AppText('visitor_login'.tr(),
+                          padding: EdgeInsets.symmetric(vertical: 3.h),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Container(
+                                  color: AppUi.colors.subTitleColor,
+                                  height: 1.2,
+                                  width: 7.w),
+                              AppText(
+                                'or'.tr(),
                                 fontSize: 14.sp,
                                 fontWeight: FontWeight.w600,
-                                textDecoration: TextDecoration.underline,
-                                decorationColor: AppUi.colors.mainColor,
-                                color: AppUi.colors.mainColor),
-                          ),
+                              ),
+                              Container(
+                                  color: AppUi.colors.subTitleColor,
+                                  height: 1.2,
+                                  width: 7.w),
+                            ],
+                          )),
+                      Center(
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.pushNamed(context, Routes.layout);
+                          },
+                          child: AppText('visitor_login'.tr(),
+                              fontSize: 14.sp,
+                              fontWeight: FontWeight.w600,
+                              textDecoration: TextDecoration.underline,
+                              decorationColor: AppUi.colors.mainColor,
+                              color: AppUi.colors.mainColor),
                         ),
+                      ),
                     ],
                   ),
                 ),

@@ -42,10 +42,7 @@ import 'package:elmoktaser_elshamel/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 
 class RouterGenarator {
-  
-
   static Route<dynamic> generateRoute(RouteSettings settings) {
-    
     switch (settings.name) {
       case Routes.splash:
         return MaterialPageRoute(builder: (context) => const SplashScreen());
@@ -64,72 +61,113 @@ class RouterGenarator {
             builder: (context) => const TermsAndConditions());
       case Routes.about:
         return MaterialPageRoute(builder: (context) => const AboutScreen());
-         case Routes.more:
+      case Routes.more:
         return MaterialPageRoute(builder: (context) => const MoreScreen());
-          case Routes.competitions:
+      case Routes.competitions:
         return MaterialPageRoute(builder: (context) => const ContestScreen());
-          case Routes.layout:
+      case Routes.layout:
         return MaterialPageRoute(builder: (context) => const LayoutScreen());
-        case Routes.home:
+      case Routes.home:
         return MaterialPageRoute(builder: (context) => const HomeScreen());
-         case Routes.courses:
+      case Routes.courses:
         return MaterialPageRoute(builder: (context) => const CoursesScreen());
-         case Routes.courseDetails:
-        return MaterialPageRoute(builder: (context) =>  CourseDetailsScreen(coursesItem: settings.arguments,));
-          case Routes.news:
+      case Routes.courseDetails:
+        return MaterialPageRoute(
+            builder: (context) => CourseDetailsScreen(
+                  coursesItem: settings.arguments,
+                ));
+      case Routes.news:
         return MaterialPageRoute(builder: (context) => const NewsScreen());
-         case Routes.newsDetails:
-        return MaterialPageRoute(builder: (context) =>  NewsDetailsScreen(newsId: settings.arguments,));
-         case Routes.card:
-        return MaterialPageRoute(builder: (context) =>const CardScreen());
-         case Routes.privacy:
-        return MaterialPageRoute(builder: (context) =>const PrivacyScreen());
-         case Routes.personalCourses:
-        return MaterialPageRoute(builder: (context) =>const PersonalCoursesScreen());
-            case Routes.personalCoursesDetails:
-        return MaterialPageRoute(builder: (context) => PersonalCoursesDetailsScreen(courseId: settings.arguments,));
-             case Routes.profile:
-        return MaterialPageRoute(builder: (context) =>const ProfileScreen());
-           case Routes.testTrial:
-        return MaterialPageRoute(builder: (context) => TestTrialScreen(contentChild: settings.arguments,));
-           case Routes.certificate:
-        return MaterialPageRoute(builder: (context) =>const CertificateScreen());
-         case Routes.certificateView:
-        return MaterialPageRoute(builder: (context) => CertificateViewScreen(certificateItem: settings.arguments,));
-            case Routes.passwordEditing:
-        return MaterialPageRoute(builder: (context) =>const PasswordEditingScreen());
-          case Routes.profileSetting:
-        return MaterialPageRoute(builder: (context) =>const ProfileSettingScreen());
-        case Routes.marketing:
-        return MaterialPageRoute(builder: (context)=>const MarketingScreen());
-          case Routes.accountStatement:
-        return MaterialPageRoute(builder: (context)=>const AccountStatementScreen());
-        case Routes.answersView:
-        return MaterialPageRoute(builder: (context)=> AnswersViewScreen(sutdentExamResultModel: settings.arguments,));
-        case Routes.singleAnswerView:
-        return MaterialPageRoute(builder: (context)=> SingleAnswerViewScreen(questionDetails: settings.arguments,));
-          case Routes.mainTests:
-        return MaterialPageRoute(builder: (context)=>const MainTestsScreen());
-        case Routes.singleTestInfo:
-        return MaterialPageRoute(builder: (context)=> SingleTestInfoScreen(childList: settings.arguments,));
-        case Routes.singleTest:
-        return MaterialPageRoute(builder: (context)=> SingleTestScreen(contentChildId: settings.arguments,));
-          case Routes.chat:
-        return MaterialPageRoute(builder: (context)=>const ChatScreen());
-        case Routes.chatDetails:
-        return MaterialPageRoute(builder: (context)=>const ChatDetailsScreen());
-         case Routes.singleContest:
-        return MaterialPageRoute(builder: (context)=> SingleContestScreen(contestId: settings.arguments,));
-        case Routes.multiAttemptScreen:
-        return MaterialPageRoute(builder: (context)=> MultiAttemptScreen(attemptId: settings.arguments,));
-        case Routes.paymentScreen:
-        return MaterialPageRoute(builder: (context)=>const PaymentScreen());
-         case Routes.pdfPreview:
-        return MaterialPageRoute(builder: (context)=>const PdfPreviewPage());
-         case Routes.notificationScreen:
-        return MaterialPageRoute(builder: (context)=>const NotificationScreen());
-         case Routes.lostInternetConnectionScreen:
-        return MaterialPageRoute(builder: (context)=>const LostInernetConnectionScreen());
+      case Routes.newsDetails:
+        return MaterialPageRoute(
+            builder: (context) => NewsDetailsScreen(
+                  newsId: settings.arguments,
+                ));
+      case Routes.card:
+        return MaterialPageRoute(builder: (context) => const CardScreen());
+      case Routes.privacy:
+        return MaterialPageRoute(builder: (context) => const PrivacyScreen());
+      case Routes.personalCourses:
+        return MaterialPageRoute(
+            builder: (context) => const PersonalCoursesScreen());
+      case Routes.personalCoursesDetails:
+        return MaterialPageRoute(
+            builder: (context) => PersonalCoursesDetailsScreen(
+                  courseId: settings.arguments,
+                ));
+      case Routes.profile:
+        return MaterialPageRoute(builder: (context) => const ProfileScreen());
+      case Routes.testTrial:
+        return MaterialPageRoute(
+            builder: (context) => TestTrialScreen(
+                  contentChild: settings.arguments,
+                ));
+      case Routes.certificate:
+        return MaterialPageRoute(
+            builder: (context) => const CertificateScreen());
+      case Routes.certificateView:
+        return MaterialPageRoute(
+            builder: (context) => CertificateViewScreen(
+                  certificateItem: settings.arguments,
+                ));
+      case Routes.passwordEditing:
+        return MaterialPageRoute(
+            builder: (context) => const PasswordEditingScreen());
+      case Routes.profileSetting:
+        return MaterialPageRoute(
+            builder: (context) => const ProfileSettingScreen());
+      case Routes.marketing:
+        return MaterialPageRoute(builder: (context) => const MarketingScreen());
+      case Routes.accountStatement:
+        return MaterialPageRoute(
+            builder: (context) => const AccountStatementScreen());
+      case Routes.answersView:
+        return MaterialPageRoute(
+            builder: (context) => AnswersViewScreen(
+                  sutdentExamResultModel: settings.arguments,
+                ));
+      case Routes.singleAnswerView:
+        return MaterialPageRoute(
+            builder: (context) => SingleAnswerViewScreen(
+                  questionDetails: settings.arguments,
+                ));
+      case Routes.mainTests:
+        return MaterialPageRoute(builder: (context) => const MainTestsScreen());
+      case Routes.singleTestInfo:
+        return MaterialPageRoute(
+            builder: (context) => SingleTestInfoScreen(
+                  childList: settings.arguments,
+                ));
+      case Routes.singleTest:
+        return MaterialPageRoute(
+            builder: (context) => SingleTestScreen(
+                  contentChildId: settings.arguments,
+                ));
+      case Routes.chat:
+        return MaterialPageRoute(builder: (context) => const ChatScreen());
+      case Routes.chatDetails:
+        return MaterialPageRoute(
+            builder: (context) => const ChatDetailsScreen());
+      case Routes.singleContest:
+        return MaterialPageRoute(
+            builder: (context) => SingleContestScreen(
+                  contestId: settings.arguments,
+                ));
+      case Routes.multiAttemptScreen:
+        return MaterialPageRoute(
+            builder: (context) => MultiAttemptScreen(
+                  attemptId: settings.arguments,
+                ));
+      case Routes.paymentScreen:
+        return MaterialPageRoute(builder: (context) => const PaymentScreen());
+      case Routes.pdfPreview:
+        return MaterialPageRoute(builder: (context) => const PdfPreviewPage());
+      case Routes.notificationScreen:
+        return MaterialPageRoute(
+            builder: (context) => const NotificationScreen());
+      case Routes.lostInternetConnectionScreen:
+        return MaterialPageRoute(
+            builder: (context) => const LostInernetConnectionScreen());
       default:
         return _errorRoute();
     }

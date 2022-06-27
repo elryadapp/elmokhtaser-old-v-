@@ -2,6 +2,7 @@ import 'package:buildcondition/buildcondition.dart';
 import 'package:elmoktaser_elshamel/blocs/courses_cubit/courses_cubit.dart';
 import 'package:elmoktaser_elshamel/models/courses_model.dart';
 import 'package:elmoktaser_elshamel/modules/courses_screens/course_details_screens/rating_card.dart';
+import 'package:elmoktaser_elshamel/routes/app_routes.dart';
 import 'package:elmoktaser_elshamel/shared/components/app_btn.dart';
 import 'package:elmoktaser_elshamel/shared/components/app_text.dart';
 import 'package:elmoktaser_elshamel/shared/components/app_text_form.dart';
@@ -14,14 +15,29 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:lottie/lottie.dart';
 import 'package:sizer/sizer.dart';
 
-class PersonalRatingTab extends StatelessWidget {
+class PersonalRatingTab extends StatefulWidget {
   final CoursesItem coursesItem;
   const PersonalRatingTab({Key? key, required this.coursesItem})
       : super(key: key);
 
   @override
+  State<PersonalRatingTab> createState() => _PersonalRatingTabState();
+}
+
+class _PersonalRatingTabState extends State<PersonalRatingTab> {
+  @override
+  void initState() {
+                var cubit=CoursesCubit.get(context);
+
+      if(widget.coursesItem.rated!){
+              cubit.commentTextEditingController.text=widget.coursesItem.comments!.firstWhere((element) => element.me==true).comment??'';
+           cubit.rate=double.parse(widget.coursesItem.comments!.firstWhere((element) => element.me==true).rating!);
+            }
+    super.initState();
+  }
+  @override
   Widget build(BuildContext context) {
-    return coursesItem.comments!.isEmpty
+    return widget.coursesItem.comments!.isEmpty
         ? Column(
             children: [
               Lottie.asset(AppUi.assets.empty, height: 30.h),
@@ -31,6 +47,7 @@ class PersonalRatingTab extends StatelessWidget {
         : BlocBuilder<CoursesCubit, CoursesState>(
           builder: (context, state) {
             var cubit=CoursesCubit.get(context);
+          
             return CustomScrollView(
                     physics: const BouncingScrollPhysics(),
                     slivers: [
@@ -41,7 +58,7 @@ class PersonalRatingTab extends StatelessWidget {
                             children: [
                               AppText('general_rating'.tr() + ' : '),
                               AppText(
-                                double.parse(coursesItem.averageRate.toString())
+                                double.parse(widget.coursesItem.averageRate.toString())
                                     .toString(),
                                 color: Colors.amber,
                                 fontSize: 11.sp,
@@ -51,12 +68,12 @@ class PersonalRatingTab extends StatelessWidget {
                                 padding: EdgeInsets.symmetric(horizontal: 2.w),
                                 child: RatingBar.builder(
                                   initialRating:
-                                      double.parse(coursesItem.averageRate.toString()),
+                                      double.parse(widget.coursesItem.averageRate.toString()),
                                   ignoreGestures: true,
                                   minRating:
-                                      double.parse(coursesItem.averageRate.toString()),
+                                      double.parse(widget.coursesItem.averageRate.toString()),
                                   maxRating:
-                                      double.parse(coursesItem.averageRate.toString()),
+                                      double.parse(widget.coursesItem.averageRate.toString()),
                                   itemSize: 2.h,
                                   direction: Axis.horizontal,
                                   allowHalfRating: true,
@@ -71,7 +88,7 @@ class PersonalRatingTab extends StatelessWidget {
                                 ),
                               ),
                               AppText(
-                                '(${coursesItem.ratingCount})',
+                                '(${widget.coursesItem.ratingCount})',
                                 color: AppUi.colors.subTitleColor.withOpacity(.6),
                               ),
                             ],
@@ -85,12 +102,12 @@ class PersonalRatingTab extends StatelessWidget {
                                 child: Padding(
                                   padding: EdgeInsets.symmetric(horizontal: 4.w),
                                   child: RationCard(
-                                    comments: coursesItem.comments![index],
+                                    comments: widget.coursesItem.comments![index],
                                   ),
                                 )),
-                            childCount: coursesItem.comments!.length),
+                            childCount: widget.coursesItem.comments!.length),
                       ),
-                    if(!coursesItem.rated!)    SliverToBoxAdapter(
+                    if(!widget.coursesItem.rated!)    SliverToBoxAdapter(
                         child: Padding(
                           padding:
                               EdgeInsets.symmetric(horizontal: 3.7.w, vertical: 2.h),
@@ -154,7 +171,7 @@ class PersonalRatingTab extends StatelessWidget {
                                                   Expanded(
                                                       child: AppButton(
                                                     onTap: () async{
-                                                      await cubit.addRate(coursesItem.id);
+                                                      await cubit.addRate(widget.coursesItem.id);
                                                       Navigator.pop(context);
                                                     },
                                                     color: AppUi.colors.activeColor
@@ -172,6 +189,94 @@ class PersonalRatingTab extends StatelessWidget {
                               },
                               height: 5.5.h,
                               title: 'add_rate'.tr()),
+                        ),
+                      ),
+
+                     if(widget.coursesItem.rated!)  SliverToBoxAdapter(
+                        child: Padding(
+                          padding:
+                              EdgeInsets.symmetric(horizontal: 3.7.w, vertical: 2.h),
+                          child: AppButton(
+                              onTap: () {
+                                AppUtil.appDialoge(
+                                    context: context,
+                                    title: 'update_rate'.tr(),
+                                    content: Padding(
+                                      padding: EdgeInsets.all(2.h),
+                                      child: BuildCondition(
+                                        condition: state is UpdateRateLoadingState||state is GetCourseContentLoadingState,
+                                         builder: (context)=>AppUtil.appLoader(height: 14.h),
+                                        fallback: (context) {
+                                          return Column(
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
+                                              RatingBar.builder(
+                                                initialRating:double.parse(widget.coursesItem.comments!.firstWhere((element) => element.me==true).rating!),
+                                                minRating: 1,
+                                                itemSize: 3.h,
+                                                allowHalfRating: true,
+                                                direction: Axis.horizontal,
+                                                itemCount: 5,
+                                                itemPadding: const EdgeInsets.symmetric(
+                                                    horizontal: 2.0),
+                                                itemBuilder: (context, _) => const Icon(
+                                                  Icons.star,
+                                                  color: Colors.amber,
+                                                ),
+                                                onRatingUpdate: (rating) {
+                                                  cubit.rate=rating;
+                                                },
+                                              ),
+                                              Padding(
+                                                padding:
+                                                    EdgeInsets.symmetric(vertical: 2.h),
+                                                child: AppTextFormFeild(
+                                                  controller:cubit.commentTextEditingController ,
+                                                  hint: 'update_rate'.tr(),
+                                                  
+                                                  maxLines: 6,
+                                                ),
+                                              ),
+                                              Row(
+                                                mainAxisAlignment: MainAxisAlignment.end,
+                                                children: [
+                                                  Expanded(
+                                                      child: AppButton(
+                                                    onTap: () {
+                                                      Navigator.pop(context);
+                                                    },
+                                                    height: 4.h,
+                                                    color: AppUi.colors.buttonColor
+                                                        .withOpacity(.9),
+                                                    title: 'cancel'.tr(),
+                                                  )),
+                                                  SizedBox(
+                                                    width: 3.w,
+                                                  ),
+                                                  Expanded(
+                                                      child: AppButton(
+                                                    onTap: () async{
+
+                                                      await cubit.updateRate(widget.coursesItem.comments!.firstWhere((element) => element.me==true).id,widget.coursesItem.id);
+                                                  Navigator.pushNamedAndRemoveUntil(context, Routes.personalCoursesDetails,ModalRoute.withName( Routes.layout),arguments: widget.coursesItem.id);
+
+                                                    },
+                                                    color: AppUi.colors.activeColor
+                                                        .withOpacity(.9),
+                                                    height: 4.h,
+                                                    title: 'confirm'.tr(),
+                                                  ))
+                                                ],
+                                              )
+                                            ],
+                                          );
+                                        }
+                                      ),
+                                    ));
+                              },
+                              height: 5.5.h,
+                              title: 'update_rate'.tr()),
                         ),
                       )
                     ],

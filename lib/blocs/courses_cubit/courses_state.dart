@@ -66,3 +66,8 @@ class CheckCourseSubscribtionErrorState extends   CoursesState {}
 class AddRateLoadingState extends CoursesState {}
 class AddRateLoadedState extends  CoursesState {}
 class AddRateErrorState extends   CoursesState {}
+
+//===================update rate states========================
+class UpdateRateLoadingState extends CoursesState {}
+class UpdateRateLoadedState extends  CoursesState {}
+class UpdateRateErrorState extends   CoursesState {}

@@ -236,5 +236,7 @@
   "There_is_no_internet_Connection":"لا يوجد اتصال بالانترنت",
   "there_are_no_content_added_to_this_course_yet":"لم تتم اضافة محتوى لهذه الدورة حتى الان",
   "visitor_login":"الدخول كزائر",
-  "add_rate":"اضافة تقييم"
+  "add_rate":"اضافة تقييم",
+  "or":"او",
+  "update_rate":"تعديل التقييم"
 }
