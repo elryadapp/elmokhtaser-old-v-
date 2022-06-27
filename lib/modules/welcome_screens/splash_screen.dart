@@ -1,6 +1,5 @@
 import 'package:buildcondition/buildcondition.dart';
 import 'package:elmoktaser_elshamel/blocs/cart_cubit/cart_cubit.dart';
-import 'package:elmoktaser_elshamel/blocs/courses_cubit/courses_cubit.dart';
 import 'package:elmoktaser_elshamel/blocs/notification_cubit/notification_cubit.dart';
 import 'package:elmoktaser_elshamel/routes/app_routes.dart';
 import 'package:elmoktaser_elshamel/shared/constants.dart';
