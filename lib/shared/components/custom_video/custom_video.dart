@@ -45,14 +45,11 @@ class _CustomVimeoPlayerState extends State<CustomVimeoPlayer> {
   void initState() {
     fullScreen = widget.allowFullScreen!;
 
-    //Create class
     _quality = QualityLinks(widget.id);
 
-    //Initializing video controllers when receiving data from Vimeo
     _quality.getQualitiesSync().then((value) {
       _qualityValue = value[value.lastKey()];
 
-      // Create resolutions map
       Map<String, String> resolutionsMap = {};
       value.keys.forEach((key) {
         String processedKey = key.split(" ")[0];
