@@ -86,6 +86,10 @@ class CoursesCubit extends Cubit<CoursesState> {
     try {
       var res = await CoursesRepositories.getAllCourses(page);
       coursesModel = CoursesModel.fromJson(res);
+      if (page == 1) {
+        coursesList = [];
+        queAndAnsList = [];
+      }
       coursesList.addAll(coursesModel?.data ?? []);
       queAndAnsList = [];
       for (var item in coursesList) {
@@ -357,7 +361,7 @@ class CoursesCubit extends Cubit<CoursesState> {
         "_method": "PUT"
       });
       if (res['status'] < 300) {
-       getCourseContentById(courseId);
+        getCourseContentById(courseId);
 
         AppUtil.flushbarNotification(res['data']);
 
