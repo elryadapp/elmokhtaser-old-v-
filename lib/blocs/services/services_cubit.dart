@@ -27,6 +27,8 @@ class ServicesCubit extends Cubit<ServicesState> {
       Constants.lang = context.locale.toString();
 
     }
+          isLangExpanded=false;
+
      
    await CacheHelper.assignData(key: 'lang', value: Locale(langCode).toString());
    LayoutCubit.get(context).changeCurrentPageIndex(4);

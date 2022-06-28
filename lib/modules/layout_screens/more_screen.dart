@@ -21,19 +21,31 @@ class MoreScreen extends StatelessWidget {
     List<MoreOptionsModel> optionsList = [
       MoreOptionsModel(
           title: 'about_us'.tr(),
-          icon: Icon(IconBroken.Info_Circle,color: AppUi.colors.mainColor,),
+          icon: Icon(
+            IconBroken.Info_Circle,
+            color: AppUi.colors.mainColor,
+          ),
           route: Routes.about),
       MoreOptionsModel(
           title: 'Competitions'.tr(),
-          icon:Icon(Icons.card_giftcard_rounded,color: AppUi.colors.mainColor,),
+          icon: Icon(
+            Icons.card_giftcard_rounded,
+            color: AppUi.colors.mainColor,
+          ),
           route: Routes.competitions),
       MoreOptionsModel(
           title: 'latest_news'.tr(),
- icon:Icon(IconBroken.Document,color: AppUi.colors.mainColor,),
-           route: Routes.news),
+          icon: Icon(
+            IconBroken.Document,
+            color: AppUi.colors.mainColor,
+          ),
+          route: Routes.news),
       MoreOptionsModel(
           title: 'privacy_policy'.tr(),
-          icon: Icon(IconBroken.Shield_Done,color: AppUi.colors.mainColor,),
+          icon: Icon(
+            IconBroken.Shield_Done,
+            color: AppUi.colors.mainColor,
+          ),
           route: Routes.privacy),
       MoreOptionsModel(
           title: 'Terms_and_Condtions'.tr(),
@@ -79,8 +91,10 @@ class MoreScreen extends StatelessWidget {
                           SizedBox(
                             width: 2.w,
                           ),
-                                                 Icon(Icons.public_outlined,color: AppUi.colors.mainColor,),
-
+                          Icon(
+                            Icons.public_outlined,
+                            color: AppUi.colors.mainColor,
+                          ),
                           const SizedBox(
                             width: 15,
                           ),
@@ -109,7 +123,6 @@ class MoreScreen extends StatelessWidget {
                                     : AppUi.colors.whiteColor,
                                 ontap: () {
                                   cubit.changeLang('ar', context);
-                                  cubit.changeLangExpanedState(false);
                                 },
                               ),
                               RadioButtonRow(
@@ -119,7 +132,6 @@ class MoreScreen extends StatelessWidget {
                                     : AppUi.colors.whiteColor,
                                 ontap: () {
                                   cubit.changeLang('en', context);
-                                  cubit.changeLangExpanedState(false);
                                 },
                               ),
                               SizedBox(
