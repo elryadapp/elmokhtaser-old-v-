@@ -16,7 +16,10 @@ class _CourseDetailsScreenState extends State<CourseDetailsScreen>
   @override
   void initState() {
     var cubit = CoursesCubit.get(context);
+    if(Constants.token!=''){
     cubit.checkCourseExitInSubscribe(widget.coursesItem.id, context);
+
+    }
 
     cubit.detailsTabController = TabController(length: 5, vsync: this);
 

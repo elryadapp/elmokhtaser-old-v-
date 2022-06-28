@@ -15,20 +15,7 @@ class LayoutCubit extends Cubit<LayoutState> {
   static LayoutCubit get(context)=>BlocProvider.of(context);
   //===========================main Layout=========================
 
-List<Widget>pages=Constants.token==''?const[
-  HomeScreen(),
-  VisitorScreen(),
-  VisitorScreen(),
-  VisitorScreen(),
-  MoreScreen()
-]:const[
-  HomeScreen(),
-  PersonalCoursesScreen(),
-  NotificationScreen(),
-  ProfileScreen(),
-  MoreScreen()
 
-];
 
 
 

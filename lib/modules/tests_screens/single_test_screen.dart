@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:buildcondition/buildcondition.dart';
 import 'package:elmoktaser_elshamel/blocs/tests_cubit/tests_cubit.dart';
+import 'package:elmoktaser_elshamel/layout/visitor_screen.dart';
 import 'package:elmoktaser_elshamel/models/couse_exam.dart';
 import 'package:elmoktaser_elshamel/modules/tests_screens/components/next_prev_btn.dart';
 import 'package:elmoktaser_elshamel/modules/tests_screens/question_type_screen.dart';
@@ -9,6 +10,7 @@ import 'package:elmoktaser_elshamel/shared/components/app_app_bar.dart';
 import 'package:elmoktaser_elshamel/shared/components/app_btn.dart';
 import 'package:elmoktaser_elshamel/shared/components/app_list_tile.dart';
 import 'package:elmoktaser_elshamel/shared/components/app_text.dart';
+import 'package:elmoktaser_elshamel/shared/constants.dart';
 
 import 'package:elmoktaser_elshamel/shared/utilities/app_ui.dart';
 import 'package:elmoktaser_elshamel/shared/utilities/app_util.dart';
@@ -32,10 +34,12 @@ class _SingleTestScreenState extends State<SingleTestScreen> {
   void initState() {
     var cubit = TestsCubit.get(context);
 
-    if (widget.contentChildId.length == 3) {
-      cubit.getContestExam(widget.contentChildId[0], context);
-    } else {
-      cubit.getCourseExam(context, widget.contentChildId);
+    if (Constants.token != '') {
+      if (widget.contentChildId.length == 3) {
+        cubit.getContestExam(widget.contentChildId[0], context);
+      } else {
+        cubit.getCourseExam(context, widget.contentChildId);
+      }
     }
 
     super.initState();
@@ -69,7 +73,9 @@ class _SingleTestScreenState extends State<SingleTestScreen> {
             titleText: ' ',
             actions: const [],
           ),
-          body: BuildCondition(
+          body:Constants.token == ''? 
+          const VisitorScreen()
+          :BuildCondition(
               condition: state is TestTimeEndedErrorState ||
                   state is GetCourseTestErrorState ||
                   state is GetContestExamErrorState,
@@ -110,7 +116,7 @@ class _SingleTestScreenState extends State<SingleTestScreen> {
                                             .withOpacity(.5),
                                         borderRadius: BorderRadius.circular(5)),
                                     child: AppText(
-                                     cubit.errorCourseMsg??"",
+                                      cubit.errorCourseMsg ?? "",
                                       textAlign: TextAlign.center,
                                       color: AppUi.colors.whiteColor,
                                       fontWeight: FontWeight.w600,
@@ -219,7 +225,6 @@ class _SingleTestScreenState extends State<SingleTestScreen> {
                                   physics: const NeverScrollableScrollPhysics(),
                                   itemCount: cubit.qusetionList.length,
                                   itemBuilder: (context, index) {
-
                                     List<MQuestion> matchingQuestion = [];
                                     if (cubit.qusetionList[index].type ==
                                         'matching') {
@@ -234,28 +239,28 @@ class _SingleTestScreenState extends State<SingleTestScreen> {
                                     return SingleChildScrollView(
                                       physics: const BouncingScrollPhysics(),
                                       child: cubit.qusetionList[index].hint !=
-                                          null?
-                                       
-                                      QuetionType(
-                                          index: index,
-                                          child:  Padding(
-                                            padding:  EdgeInsets.only(bottom: 2.h),
-                                            child: Card(
-                                            child: AppListTile(
-                                                title: 'explain_question'.tr(),
-                                                content: Html(
-                                                    data: cubit
-                                                            .qusetionList[
-                                                                index]
-                                                            .hint ??
-                                                        '')),
-                                        ),
-                                          ),
-                                          quetions: matchingQuestion):
-                                               QuetionType(
-                                          index: index,
-                                        
-                                          quetions: matchingQuestion),
+                                              null
+                                          ? QuetionType(
+                                              index: index,
+                                              child: Padding(
+                                                padding: EdgeInsets.only(
+                                                    bottom: 2.h),
+                                                child: Card(
+                                                  child: AppListTile(
+                                                      title: 'explain_question'
+                                                          .tr(),
+                                                      content: Html(
+                                                          data: cubit
+                                                                  .qusetionList[
+                                                                      index]
+                                                                  .hint ??
+                                                              '')),
+                                                ),
+                                              ),
+                                              quetions: matchingQuestion)
+                                          : QuetionType(
+                                              index: index,
+                                              quetions: matchingQuestion),
                                     );
                                   }),
                             ),
@@ -306,7 +311,6 @@ class _SingleTestScreenState extends State<SingleTestScreen> {
                                           'not_answered'
                                       ? () {
                                           AppUtil.flushbarNotification(
-                                              
                                               'please_choose_your_answer_first'
                                                   .tr());
                                         }

@@ -1,3 +1,10 @@
+import 'package:elmoktaser_elshamel/layout/visitor_screen.dart';
+import 'package:elmoktaser_elshamel/modules/layout_screens/home/home_screen.dart';
+import 'package:elmoktaser_elshamel/modules/layout_screens/more_screen.dart';
+import 'package:elmoktaser_elshamel/modules/layout_screens/personal_courses_screens/personal_courses_screen.dart';
+import 'package:elmoktaser_elshamel/modules/layout_screens/profile_screens/profile_screen.dart';
+import 'package:elmoktaser_elshamel/modules/notification_screen/notifications_screen.dart';
+
 import '_exports.dart';
 import 'package:flutter/material.dart';
 class LayoutScreen extends StatefulWidget {
@@ -9,10 +16,26 @@ class LayoutScreen extends StatefulWidget {
 
 class _LayoutScreenState extends State<LayoutScreen>
     with SingleTickerProviderStateMixin {
+      
   List<TitledNavigationBarItem> navBarItemList = [];
   List<String> pageTitlesList = [];
+  List<Widget>pages=[];
   @override
   void initState() {
+  pages=Constants.token==''?const[
+  HomeScreen(),
+  VisitorScreen(),
+  VisitorScreen(),
+  VisitorScreen(),
+  MoreScreen()
+]:const[
+  HomeScreen(),
+  PersonalCoursesScreen(),
+  NotificationScreen(),
+  ProfileScreen(),
+  MoreScreen()
+
+];
     navBarItemList = [
       TitledNavigationBarItem(
         title: 'Home'.tr(),
@@ -142,7 +165,7 @@ class _LayoutScreenState extends State<LayoutScreen>
               isLeading: false,
             ),
             body: WillPopScope(
-                child: cubit.pages[cubit.currentPageIndex],
+                child: pages[cubit.currentPageIndex],
                 onWillPop: () async {
                   if (cubit.currentPageIndex != 0) {
                     cubit.changeCurrentPageIndex(0);
