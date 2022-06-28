@@ -18,33 +18,30 @@ class TestInfoBtnRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return Wrap(
+      
       children: [
-        Expanded(
-            child: Card(
+        Card(
           color: AppUi.colors.whiteColor,
           child: Padding(
-            padding: EdgeInsets.all(2.h),
-            child: Row(
-              children: [
-                AppText('$title : '),
-                AppText(
-                  info,
-                  textOverflow: TextOverflow.ellipsis,
-                  color: AppUi.colors.mainColor,
-                )
-              ],
-            ),
-          ),
-        )),
-        SizedBox(
-          width: 3.w,
+        padding: EdgeInsets.all(2.h),
+        child: Wrap(
+          children: [
+            AppText('$title : '),
+            AppText(
+              info,
+              textOverflow: TextOverflow.ellipsis,
+              color: AppUi.colors.mainColor,
+            )
+          ],
         ),
-        Expanded(
-            child: Card(
+          ),
+        ),
+      
+        Card(
           child: Padding(
             padding: EdgeInsets.all(2.h),
-            child: Row(
+            child: Wrap(
               children: [
                 AppText('$secTitle : '),
                 AppText(
@@ -54,7 +51,7 @@ class TestInfoBtnRow extends StatelessWidget {
               ],
             ),
           ),
-        ))
+        ),
       ],
     );
   }

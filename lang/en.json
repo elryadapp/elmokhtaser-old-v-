@@ -244,8 +244,11 @@
 "or":"OR",
 "update_rate":"Update Rate",
 "select_the_rate_first":"select the rate first",
-"add_a_comment_first":"please select comment first"
-
+"add_a_comment_first":"please select comment first",
+"final_degree":"Final Degree",
+"correct_answers":"Correct Answers",
+"wrong_answers":"Wrong Answers",
+"not_answered":"Not answered"
 
 
 }

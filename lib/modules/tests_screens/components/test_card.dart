@@ -43,22 +43,21 @@ class TestCard extends StatelessWidget {
                     padding: EdgeInsets.symmetric(vertical: 2.h),
                     child: Row(
                       children: [
-                        Expanded(
-                          child: AppTextIcon(
+                       AppTextIcon(
                               title:examItem.attemps!>10? '${examItem.attemps}\t'+'attempt'.tr():'${examItem.attemps}\t'+'tries'.tr(),
                               icon: Icon(Icons.restart_alt_outlined,color: AppUi.colors.mainColor,)),
-                        ),
+                      
                         SizedBox(
                           width: 2.w,
                         ),
-                      Expanded(child:   AppTextIcon(
+                         AppTextIcon(
                           title: '${examItem.examTime}\t'+'minute'.tr(),
                           icon: Icon(
                             Icons.access_time_rounded,
                             size: 2.5.h,
                             color: AppUi.colors.mainColor,
                           ),
-                        ),)
+                        ),
                       ],
                     ),
                   ),

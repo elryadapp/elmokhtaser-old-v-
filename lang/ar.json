@@ -240,5 +240,9 @@
   "or":"او",
   "update_rate":"تعديل التقييم",
   "select_the_rate_first":"من فضلك اختر تقييم اولا",
-  "add_a_comment_first":"من فضلك اضف تعليق اولا"
+  "add_a_comment_first":"من فضلك اضف تعليق اولا",
+  "final_degree":"الدرجة النهائية",
+  "correct_answers":"الإجابات الصحيحة",
+  "wrong_answers":"الإجابات الخاطئة",
+  "not_answered":"بدون إجابة"
 }

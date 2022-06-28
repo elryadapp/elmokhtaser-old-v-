@@ -28,6 +28,7 @@ class SingleTestInfoScreen extends StatelessWidget {
       body: Padding(
         padding: EdgeInsets.all(2.h),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(5),

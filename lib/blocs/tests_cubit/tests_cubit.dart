@@ -13,6 +13,7 @@ import 'package:elmoktaser_elshamel/shared/utilities/app_ui.dart';
 import 'package:elmoktaser_elshamel/shared/utilities/app_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:easy_localization/easy_localization.dart';
 part 'tests_state.dart';
 
 class TestsCubit extends Cubit<TestsState> {
@@ -217,13 +218,13 @@ bool isVideo=false;
 //==========================static data===========================
   List<TestTrialCardModel> containerTitles = [
     TestTrialCardModel(
-        color: AppUi.colors.activeColor, title: 'الدرجة النهائية'),
+        color: AppUi.colors.activeColor, title: 'final_degree'.tr()),
     TestTrialCardModel(
-        title: 'الإجابات الصحيحة', color: AppUi.colors.correctCardColor),
+        title: 'correct_answers'.tr(), color: AppUi.colors.correctCardColor),
     TestTrialCardModel(
-        title: 'الإجابات الخاطئة', color: AppUi.colors.buttonColor),
+        title: 'wrong_answers'.tr(), color: AppUi.colors.buttonColor),
     TestTrialCardModel(
-        title: 'بدون إجابة', color: AppUi.colors.emptyAnsCardColor)
+        title: 'not_answered'.tr(), color: AppUi.colors.emptyAnsCardColor)
   ];
   List<String> testTrialInfo = [];
 

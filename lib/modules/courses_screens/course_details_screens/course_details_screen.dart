@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:elmoktaser_elshamel/modules/courses_screens/_exports.dart';
 
@@ -16,9 +15,8 @@ class _CourseDetailsScreenState extends State<CourseDetailsScreen>
   @override
   void initState() {
     var cubit = CoursesCubit.get(context);
-    if(Constants.token!=''){
-    cubit.checkCourseExitInSubscribe(widget.coursesItem.id, context);
-
+    if (Constants.token != '') {
+      cubit.checkCourseExitInSubscribe(widget.coursesItem.id, context);
     }
 
     cubit.detailsTabController = TabController(length: 5, vsync: this);
@@ -44,8 +42,7 @@ class _CourseDetailsScreenState extends State<CourseDetailsScreen>
               builder: (context) => AppUtil.appLoader(),
               fallback: (context) {
                 return Padding(
-                  padding:
-                      EdgeInsets.symmetric(horizontal: 5.w, vertical: 3.h),
+                  padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 3.h),
                   child: Column(
                     children: [
                       CustomVideo(
@@ -60,29 +57,29 @@ class _CourseDetailsScreenState extends State<CourseDetailsScreen>
                           padding: const EdgeInsets.symmetric(horizontal: 5),
                           child: TabBar(
                               onTap: (index) {
-                                                                  cubit.tabIndexChanged();
+                                cubit.tabIndexChanged();
 
-                                if(index==1){
-                                 cubit.getCoursesContent(widget.coursesItem.id);
+                                if (index == 1) {
+                                  cubit
+                                      .getCoursesContent(widget.coursesItem.id);
                                 }
                               },
                               labelColor: AppUi.colors.mainColor,
                               isScrollable: true,
                               physics: const BouncingScrollPhysics(),
-                              unselectedLabelColor:
-                                  AppUi.colors.subTitleColor,
+                              unselectedLabelColor: AppUi.colors.subTitleColor,
                               labelPadding: EdgeInsets.zero,
                               labelStyle: TextStyle(
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 12.sp),
+                                  fontWeight: FontWeight.w700, fontSize: 12.sp),
                               controller: cubit.detailsTabController,
                               tabs: [
                                 ...cubit.courseDetailsTabList
                                     .asMap()
                                     .entries
                                     .map((e) => Padding(
-                                          padding: const EdgeInsetsDirectional
-                                              .only(start: 10, end: 10),
+                                          padding:
+                                              const EdgeInsetsDirectional.only(
+                                                  start: 10, end: 10),
                                           child: Tab(
                                             text: e.value,
                                           ),
@@ -101,8 +98,7 @@ class _CourseDetailsScreenState extends State<CourseDetailsScreen>
                             const CouresContentTab(),
                             QuestionAndAnswersTab(
                                 courseItem: widget.coursesItem),
-                            CoursePublicBagTab(
-                                coursesItem: widget.coursesItem),
+                            CoursePublicBagTab(coursesItem: widget.coursesItem),
                             RatingTab(
                               coursesItem: widget.coursesItem,
                             ),
@@ -140,7 +136,6 @@ class _CourseDetailsScreenState extends State<CourseDetailsScreen>
                               CartCubit.get(context).addToCartItem(
                                   widget.coursesItem.id, context);
                               Navigator.pushNamed(context, Routes.card);
-                       
                             }
                           }
                         },
@@ -154,7 +149,10 @@ class _CourseDetailsScreenState extends State<CourseDetailsScreen>
                           padding: EdgeInsets.symmetric(horizontal: 7.w),
                           child: Row(
                             children: [
-                            Icon(Icons.shopping_cart_outlined,color: AppUi.colors.whiteColor,),
+                              Icon(
+                                Icons.shopping_cart_outlined,
+                                color: AppUi.colors.whiteColor,
+                              ),
                               const Spacer(),
                               cubit.active == null &&
                                       widget.coursesItem.subscribed

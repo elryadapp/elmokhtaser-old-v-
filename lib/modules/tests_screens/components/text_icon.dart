@@ -19,12 +19,11 @@ class AppTextIcon extends StatelessWidget {
         SizedBox(
           width: 1.2.w,
         ),
-        Expanded(
-          child: AppText(
+        AppText(
             title,
             fontWeight: fontWeight ?? FontWeight.normal,
           ),
-        )
+        
       ],
     );
   }
