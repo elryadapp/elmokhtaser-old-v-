@@ -56,8 +56,6 @@ class _PersonalCoursesDetailsScreenState
           appBar: ElmoktaserAppbar(
             context,
             titleText: '',
-            isLeading: true,
-            actions: const [],
           ),
           body: BuildCondition(
               condition: state is GetCourseContentLoadingState ||

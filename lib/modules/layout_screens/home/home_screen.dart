@@ -29,6 +29,7 @@ class _HomeScreenState extends State<HomeScreen> {
     CoursesCubit.get(context).getAllCourses();
     super.initState();
   }
+  
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<CoursesCubit, CoursesState>(

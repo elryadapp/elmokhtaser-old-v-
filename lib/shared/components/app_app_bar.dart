@@ -1,11 +1,6 @@
-
-import 'package:elmoktaser_elshamel/blocs/cart_cubit/cart_cubit.dart';
-import 'package:elmoktaser_elshamel/routes/app_routes.dart';
-import 'package:elmoktaser_elshamel/shared/utilities/app_ui.dart';
+import 'package:elmoktaser_elshamel/layout/_exports.dart';
 import 'package:flutter/material.dart';
-import 'package:sizer/sizer.dart';
 
-import 'app_text.dart';
 
 class ElmoktaserAppbar extends AppBar {
   ElmoktaserAppbar(
@@ -14,7 +9,6 @@ class ElmoktaserAppbar extends AppBar {
     bool? isTitleCenterd,
     Widget? leading,
     bool? isLeading = true,
-    bool? isActionAvilable = true,
     Color? leadingIconColor,
     Color? backIconColor,
     Widget? title,
@@ -33,8 +27,6 @@ class ElmoktaserAppbar extends AppBar {
               (isLeading
                   ? IconButton(
                       onPressed: () {
-       
-
                         Navigator.pop(context);
                       },
                       icon: const Icon(
@@ -51,37 +43,96 @@ class ElmoktaserAppbar extends AppBar {
               ),
           actions: actions ??
               [
-                !isActionAvilable!
-                    ? Container()
-                    :   InkWell(
-                      onTap:(){
-                        Navigator.pushNamed(context, Routes.card).then((value) {
-                          
-                        });
-
-                      },
-                      child: Stack(
-                                    alignment: AlignmentDirectional.topStart,
-                                    children: [
-                                      Image.asset(AppUi.assets.cardIcon),
-                                      CircleAvatar(
-                      radius: 2.5.w,
-                      child: AppText(
-                       '${CartCubit.get(context).cartItemList.length}',
-                        fontSize: 8.sp,
-                        textAlign: TextAlign.center,
-                        color:CartCubit.get(context).cartItemList.isNotEmpty
-                            ? AppUi.colors.whiteColor
-                            : Colors.transparent,
-                        fontWeight: FontWeight.w600,
-                      ),
-                      backgroundColor:CartCubit.get(context).cartItemList.isNotEmpty
-                          ? AppUi.colors.buttonColor
-                          : Colors.transparent,
-                                      )
-                                    ],
+               InkWell(
+                        onTap: () {
+                          Navigator.pushNamed(context, Routes.card)
+                              .then((value) {});
+                        },
+                        child: Stack(
+                          alignment: AlignmentDirectional.topStart,
+                          children: [
+                            Image.asset(AppUi.assets.cardIcon),
+                            BlocBuilder<CartCubit, CartState>(
+                              builder: (context, state) {
+                                return CircleAvatar(
+                                  radius: 2.5.w,
+                                  child: AppText(
+                                    '${CartCubit.get(context).cartItemList.length}',
+                                    fontSize: 8.sp,
+                                    textAlign: TextAlign.center,
+                                    color: CartCubit.get(context)
+                                            .cartItemList
+                                            .isNotEmpty
+                                        ? AppUi.colors.whiteColor
+                                        : Colors.transparent,
+                                    fontWeight: FontWeight.w600,
                                   ),
-                    ),
+                                  backgroundColor: CartCubit.get(context)
+                                          .cartItemList
+                                          .isNotEmpty
+                                      ? AppUi.colors.buttonColor
+                                      : Colors.transparent,
+                                );
+                              },
+                            ),
+                           
+                          ],
+                        ),
+                      ),
+
+                       if (LayoutCubit.get(context).currentPageIndex != 2)
+                              InkWell(
+                                onTap: () {
+                                  LayoutCubit.get(context)
+                                      .changeCurrentPageIndex(2);
+                                  Navigator.pushNamed(context, Routes.layout);
+                                },
+                                child: Stack(
+                                  alignment: AlignmentDirectional.topStart,
+                                  children: [
+                                    Lottie.asset(
+                                      AppUi.assets.lottieNotification,
+                                      height: 6.h,
+                                      controller: NotificationHelper.controller,
+                                      onLoaded: (composition) {
+                                        NotificationHelper
+                                                .controller!.duration =
+                                            const Duration(milliseconds: 500);
+                                      },
+                                    ),
+                                    PositionedDirectional(
+                                      start: 1.5.w,
+                                      top: .5.h,
+                                      child: BlocBuilder<NotificationCubit,
+                                          NotificationState>(
+                                        builder: (context, state) {
+                                          return CircleAvatar(
+                                            radius: 2.5.w,
+                                            child: AppText(
+                                              '${NotificationCubit.get(context).unreadedNotification.length}',
+                                              fontSize: 8.sp,
+                                              textAlign: TextAlign.center,
+                                              color:
+                                                  NotificationCubit.get(context)
+                                                          .unreadedNotification
+                                                          .isNotEmpty
+                                                      ? AppUi.colors.whiteColor
+                                                      : Colors.transparent,
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                            backgroundColor:
+                                                NotificationCubit.get(context)
+                                                        .unreadedNotification
+                                                        .isNotEmpty
+                                                    ? AppUi.colors.buttonColor
+                                                    : Colors.transparent,
+                                          );
+                                        },
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
               ],
           centerTitle: isTitleCenterd ?? true,
           flexibleSpace: flexibleSpace,

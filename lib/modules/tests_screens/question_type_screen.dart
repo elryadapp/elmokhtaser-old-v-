@@ -5,7 +5,6 @@ import 'package:elmoktaser_elshamel/blocs/tests_cubit/tests_cubit.dart';
 import 'package:elmoktaser_elshamel/models/couse_exam.dart';
 import 'package:elmoktaser_elshamel/shared/components/app_text.dart';
 import 'package:elmoktaser_elshamel/shared/components/app_text_form.dart';
-import 'package:elmoktaser_elshamel/shared/constants.dart';
 import 'package:elmoktaser_elshamel/shared/components/question_card.dart';
 import 'package:elmoktaser_elshamel/shared/utilities/app_ui.dart';
 import 'package:flutter/material.dart';
@@ -95,118 +94,113 @@ class _QuetionTypeState extends State<QuetionType> {
       builder: (context, state) {
         var cubit = TestsCubit.get(context);
 
-        return SingleChildScrollView(
-          physics: const BouncingScrollPhysics(),
-          child: SizedBox(
-            height: Constants.getHeight(context),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                QuestionCard(
-                    question: cubit.qusetionList[widget.index],
-                    questionNum: '${widget.index + 1}'),
-                if (widget.child != null) widget.child!,
-                if (cubit.qusetionList[widget.index].type == 'multi_choice' ||
-                    cubit.qusetionList[widget.index].type == 'true_false')
-                  Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      ...answerList.entries.map(
-                        (e) => RadioListTile(
-                            title: Html(data: e.value),
-                            value: e.key,
-                            groupValue: cubit.selectedAns[cubit.currentPage!],
-                            onChanged: (val) {
-                              cubit.changeSelectedAns(val, cubit.currentPage!);
-                            }),
-                      ),
-                    ],
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            QuestionCard(
+                question: cubit.qusetionList[widget.index],
+                questionNum: '${widget.index + 1}'),
+            if (widget.child != null) widget.child!,
+            if (cubit.qusetionList[widget.index].type == 'multi_choice' ||
+                cubit.qusetionList[widget.index].type == 'true_false')
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  ...answerList.entries.map(
+                    (e) => RadioListTile(
+                        title: Html(data: e.value),
+                        value: e.key,
+                        groupValue: cubit.selectedAns[cubit.currentPage!],
+                        onChanged: (val) {
+                          cubit.changeSelectedAns(val, cubit.currentPage!);
+                        }),
                   ),
-                if (cubit.qusetionList[widget.index].type == 'textual')
-                  AppTextFormFeild(
-                    maxLines: 8,
-                    onChange: (ans) {
-                      cubit.selectedAns[widget.index] = ans;
-                      cubit.change();
-                    },
-                    filledColor: AppUi.colors.whiteColor,
-                    hint: 'write_your_answer_here'.tr(),
-                  ),
-                if (cubit.qusetionList[widget.index].type == 'matching')
-                  AppText(
-                    'questions'.tr(),
-                    color: AppUi.colors.mainColor,
-                    fontSize: 14.sp,
-                    fontWeight: FontWeight.w600,
-                  ),
-                if (cubit.qusetionList[widget.index].type == 'matching')
-                  ...widget.quetions.asMap().entries.map((e) => Container(
-                        margin: EdgeInsets.symmetric(vertical: .5.h),
-                        padding: EdgeInsets.all(1.5.h),
-                        decoration: BoxDecoration(
+                ],
+              ),
+            if (cubit.qusetionList[widget.index].type == 'textual')
+              AppTextFormFeild(
+                maxLines: 8,
+                onChange: (ans) {
+                  cubit.selectedAns[widget.index] = ans;
+                  cubit.change();
+                },
+                filledColor: AppUi.colors.whiteColor,
+                hint: 'write_your_answer_here'.tr(),
+              ),
+            if (cubit.qusetionList[widget.index].type == 'matching')
+              AppText(
+                'questions'.tr(),
+                color: AppUi.colors.mainColor,
+                fontSize: 14.sp,
+                fontWeight: FontWeight.w600,
+              ),
+            if (cubit.qusetionList[widget.index].type == 'matching')
+              ...widget.quetions.asMap().entries.map((e) => Container(
+                    margin: EdgeInsets.symmetric(vertical: .5.h),
+                    padding: EdgeInsets.all(1.5.h),
+                    decoration: BoxDecoration(
+                        color: AppUi.colors.whiteColor,
+                        borderRadius: BorderRadius.circular(5),
+                        border:
+                            Border.all(color: AppUi.colors.borderColor)),
+                    child: Row(
+                      children: [
+                        CircleAvatar(
+                          radius: 3.w,
+                          child: AppText(
+                            '${e.value.qn!}',
                             color: AppUi.colors.whiteColor,
-                            borderRadius: BorderRadius.circular(5),
-                            border:
-                                Border.all(color: AppUi.colors.borderColor)),
-                        child: Row(
-                          children: [
-                            CircleAvatar(
-                              radius: 3.w,
-                              child: AppText(
-                                '${e.value.qn!}',
-                                color: AppUi.colors.whiteColor,
-                              ),
-                              backgroundColor: AppUi.colors.mainColor,
-                            ),
-                            SizedBox(
-                              width: 3.w,
-                            ),
-                            AppText(
-                              e.value.q!,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ],
+                          ),
+                          backgroundColor: AppUi.colors.mainColor,
                         ),
-                      )),
-                if (cubit.qusetionList[widget.index].type == 'matching')
-                  Padding(
-                    padding: EdgeInsets.symmetric(vertical: .5.h),
-                    child: AppText(
-                      'answers'.tr(),
-                      fontSize: 14.sp,
-                      color: AppUi.colors.mainColor,
-                      fontWeight: FontWeight.w600,
+                        SizedBox(
+                          width: 3.w,
+                        ),
+                        AppText(
+                          e.value.q!,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ],
                     ),
-                  ),
-                if (cubit.qusetionList[widget.index].type == 'matching')
-                  Expanded(
-                    child: DragAndDropLists(
-                      children: content,
-                      onItemReorder: (int oldItemIndex, int oldListIndex,
-                          int newItemIndex, int newListIndex) {
-                        var movedItem = content[oldListIndex]
-                            .children
-                            .removeAt(oldItemIndex);
-                        content[newListIndex]
-                            .children
-                            .insert(newItemIndex, movedItem);
-                        var movedAnswer =
-                            cubit.userAnswers!.removeAt(oldItemIndex);
-                        cubit.userAnswers!.insert(newItemIndex, movedAnswer);
-                      
+                  )),
+            if (cubit.qusetionList[widget.index].type == 'matching')
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: .5.h),
+                child: AppText(
+                  'answers'.tr(),
+                  fontSize: 14.sp,
+                  color: AppUi.colors.mainColor,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            if (cubit.qusetionList[widget.index].type == 'matching')
+              Expanded(
+                child: DragAndDropLists(
+                  children: content,
+                  onItemReorder: (int oldItemIndex, int oldListIndex,
+                      int newItemIndex, int newListIndex) {
+                    var movedItem = content[oldListIndex]
+                        .children
+                        .removeAt(oldItemIndex);
+                    content[newListIndex]
+                        .children
+                        .insert(newItemIndex, movedItem);
+                    var movedAnswer =
+                        cubit.userAnswers!.removeAt(oldItemIndex);
+                    cubit.userAnswers!.insert(newItemIndex, movedAnswer);
+                  
 
-                        cubit.selectedAns[widget.index] =
-                            json.encode(cubit.userAnswers);
+                    cubit.selectedAns[widget.index] =
+                        json.encode(cubit.userAnswers);
 
-                        cubit.change();
-                      },
-                      onListReorder: (int oldListIndex, int newListIndex) {},
-                    ),
-                  )
-              ],
-            ),
-          ),
+                    cubit.change();
+                  },
+                  onListReorder: (int oldListIndex, int newListIndex) {},
+                ),
+              ),
+              SizedBox(height: 5.h,)
+          ],
         );
       },
     );

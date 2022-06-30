@@ -8,7 +8,6 @@ import 'package:elmoktaser_elshamel/shared/components/app_btn.dart';
 import 'package:elmoktaser_elshamel/shared/components/app_list_tile.dart';
 import 'package:elmoktaser_elshamel/shared/components/app_text.dart';
 import 'package:elmoktaser_elshamel/shared/components/app_text_form.dart';
-import 'package:elmoktaser_elshamel/shared/components/custom_app_dia.dart';
 import 'package:elmoktaser_elshamel/shared/utilities/app_ui.dart';
 import 'package:elmoktaser_elshamel/shared/utilities/app_util.dart';
 import 'package:elmoktaser_elshamel/shared/utilities/icon_broken.dart';
@@ -175,34 +174,17 @@ class _PaymentScreenState extends State<PaymentScreen> {
                                           Padding(
                                             padding: EdgeInsets.symmetric(
                                                 vertical: 2.h),
-                                            child: InkWell(
-                                              onTap: () {
-                                                AppUtil.appDialoge(
-                                                        context: context,
-                                                        title: 'choose_bank'.tr(),
-                                                        content: CustomAppDia(
-                                                          errorMsg: 'please_select_bank_name'.tr(),
-                                                            contentList: cubit
-                                                                .banksList
-                                                                .map((e) =>
-                                                                    e.name!)
-                                                                .toList()))
-                                                    .then((value) {
-                                                  cubit.bankNameController
-                                                      .text = value ?? '';
-                                                });
-                                              },
+                                             
                                               child: AppTextFormFeild(
                                                 isFilled: false,
                                                 prefixIcon: const Icon(
                                                     IconBroken.Location),
                                                 validation: true,
-                                                isEnable: false,
                                                 controller:
                                                     cubit.bankNameController,
                                               ),
                                             ),
-                                          ),
+                                          
                                            AppText(
                                             'transfer_date'.tr(),
                                             fontWeight: FontWeight.w600,

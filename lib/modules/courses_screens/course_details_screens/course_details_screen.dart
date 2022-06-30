@@ -34,7 +34,6 @@ class _CourseDetailsScreenState extends State<CourseDetailsScreen>
         return Scaffold(
           appBar: ElmoktaserAppbar(
             context,
-            actions: const [],
             titleText: '',
           ),
           body: BuildCondition(

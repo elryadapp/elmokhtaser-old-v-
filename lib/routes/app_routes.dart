@@ -1,41 +1,7 @@
-import 'package:elmoktaser_elshamel/routes/_exports.dart';
 
 abstract class Routes {
  
-  static final routes = {
-    competitions: (context) => const ContestScreen(),
-    layout: (context) => const LayoutScreen(),
-    more: (context) => const MoreScreen(),
-    splash: (context) => const SplashScreen(),
-    about: (context) => const AboutScreen(),
-    verification: (context) => const VerificationScreen(),
-    onBoarding: (context) => const OnBoardingScreen(),
-    login: (context) => const LoginScreen(),
-    register: (context) => const RegisterScreen(),
-    termsAndConditions: (context) => const TermsAndConditions(),
-    news: (context) => const NewsScreen(),
-    home: (context) => const HomeScreen(),
-    courses: (context) => const CoursesScreen(),
-    card: (context) => const CardScreen(),
-    privacy: (context) => const PrivacyScreen(),
-    personalCourses: (context) => const PersonalCoursesScreen(),
-    profile: (context) => const ProfileScreen(),
-    generalTest: (context) => const GeneralTestScreen(),
-    certificate: (context) => const CertificateScreen(),
-    passwordEditing: (context) => const PasswordEditingScreen(),
-    profileSetting: (context) => const ProfileSettingScreen(),
-    marketing: (context) => const MarketingScreen(),
-    accountStatement: (context) => const AccountStatementScreen(),
-    mainTests: (context) => const MainTestsScreen(),
-    chat: (context) => const ChatScreen(),
-    paymentScreen:(context)=>const PaymentScreen(),
-    chatDetails: (context) => const ChatDetailsScreen(),
-    pdfPreview:(context)=>const PdfPreviewPage(),
-    notificationScreen:(context)=>const NotificationScreen(),
-        lostInternetConnectionScreen:(context)=>const LostInernetConnectionScreen()
-
-
-  };
+  
   static const lostInternetConnectionScreen='/lost_internet_connection';
   static const notificationScreen='/notification_screen';
   static const pdfPreview='/pdf_preview';

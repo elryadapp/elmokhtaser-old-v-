@@ -7,5 +7,4 @@ class Constants {
   static String token = CacheHelper.getData(key: 'jwt') ?? '';
   static String userName = CacheHelper.getData(key: 'user_name')??'';
   static String lang = CacheHelper.getData(key: 'lang')??'ar';
-   
 }

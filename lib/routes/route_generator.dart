@@ -4,7 +4,10 @@ import 'package:flutter/material.dart';
 
 class RouterGenarator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
-    switch (settings.name) {
+    
+    switch (settings.name) 
+    {
+
       case Routes.splash:
         return MaterialPageRoute(builder: (context) => const SplashScreen());
       case Routes.onBoarding:

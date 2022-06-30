@@ -3,6 +3,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:elmoktaser_elshamel/blocs/auth_cubit/auth_cubit.dart';
 import 'package:elmoktaser_elshamel/blocs/cart_cubit/cart_cubit.dart';
 import 'package:elmoktaser_elshamel/blocs/chat_cubit/chat_cubit.dart';
+import 'package:elmoktaser_elshamel/blocs/connectivity_bloc.dart/connectivity_bloc_cubit.dart';
 import 'package:elmoktaser_elshamel/blocs/contest_cubit/contest_cubit.dart';
 import 'package:elmoktaser_elshamel/blocs/courses_cubit/courses_cubit.dart';
 import 'package:elmoktaser_elshamel/blocs/layout_cubit/layout_cubit.dart';
@@ -73,6 +74,9 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => NotificationCubit(),
         ),
+           BlocProvider(
+          create: (context) => ConnectivityCubit(),
+        ),
         BlocProvider(create: (context) => CartCubit()),
         BlocProvider(create: (context) => TestsCubit()),
         BlocProvider(create: (context) => AuthCubit()),
@@ -91,7 +95,6 @@ class MyApp extends StatelessWidget {
               debugShowCheckedModeBanner: false,
               initialRoute: Routes.splash,
               onGenerateRoute: RouterGenarator.generateRoute,
-              routes: Routes.routes,
             
         );
       }),

@@ -9,8 +9,10 @@ import 'package:meta/meta.dart';
 part 'notification_state.dart';
 
 class NotificationCubit extends Cubit<NotificationState> {
+  
   NotificationCubit() : super(NotificationInitial());
   static NotificationCubit get(context) => BlocProvider.of(context);
+  
   //============get user notification====================
   NotificationModel? notificationModel;
   List<NotificationItemModel> notificationsList = [];
