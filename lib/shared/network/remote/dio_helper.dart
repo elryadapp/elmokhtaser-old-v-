@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:elmoktaser_elshamel/shared/constants.dart';
-import 'package:elmoktaser_elshamel/shared/network/remote/dio_interceptor.dart';
 import 'package:elmoktaser_elshamel/shared/network/remote/end_points.dart';
 
 class DioHelper {
@@ -16,7 +15,6 @@ class DioHelper {
             'lang': Constants.lang
           }),
     );
-    // ..interceptors.add(DioInterceptorHelper());
   }
 
   static Future<Response> getData({

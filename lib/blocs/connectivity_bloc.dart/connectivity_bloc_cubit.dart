@@ -8,18 +8,22 @@ part 'connectivity_bloc_state.dart';
 
 class ConnectivityCubit extends Cubit<ConnectivityCubitState> {
   ConnectivityCubit() : super(ConnectivityBlocInitial());
-  static ConnectivityCubit get(context)=>BlocProvider.of(context);
+  static ConnectivityCubit get(context) => BlocProvider.of(context);
   final Connectivity connectivity = Connectivity();
   StreamSubscription? connectivitySubscription;
+  bool hasConnection = true;
+
 
 
   Future<void> checkConnection({required Connectivity connectivity}) async {
     ConnectivityResult result = await connectivity.checkConnectivity();
     if (result == ConnectivityResult.none) {
-      AppUtil.flushbarNotification('مفيش زفت نت');
+      hasConnection = false;
+
+      AppUtil.flushbarNotification('there_is_no_internet_connection'.tr());
       emit(DisconnectedState());
     } else {
-            AppUtil.flushbarNotification('فيه زفت نت');
+      hasConnection = true;
       emit(ConnectedState());
     }
   }

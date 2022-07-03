@@ -244,5 +244,6 @@
   "final_degree":"الدرجة النهائية",
   "correct_answers":"الإجابات الصحيحة",
   "wrong_answers":"الإجابات الخاطئة",
-  "not_answered":"بدون إجابة"
+  "not_answered":"بدون إجابة",
+  "there_is_no_internet_connection":"لا يوجد اتصال بالشبكة"
 }

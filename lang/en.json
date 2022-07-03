@@ -248,7 +248,7 @@
 "final_degree":"Final Degree",
 "correct_answers":"Correct Answers",
 "wrong_answers":"Wrong Answers",
-"not_answered":"Not answered"
-
+"not_answered":"Not answered" ,
+"there_is_no_internet_connection":"There is no connection to the internet"
 
 }

@@ -84,7 +84,7 @@ class _AppAssets {
   final zoom = 'assets/icons/zoom.png';
 
   final empty = 'assets/lottie/empty.json';
-
+final noInternetLottie='assets/lottie/no-internet.json';
   final networkImageBaseLink = 'https://emary.azq1.com/Mo5tsr/';
   final gradCap = 'assets/icons/grad_cap.png';
   final homeFake1 = 'assets/images/home_fake1.png';
