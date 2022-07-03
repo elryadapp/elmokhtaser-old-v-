@@ -23,11 +23,7 @@ class _MainTestsScreenState extends State<MainTestsScreen>
     with SingleTickerProviderStateMixin {
   @override
   void initState() {
-    var connection = ConnectivityCubit.get(context);
-    connection.connectivitySubscription =
-        connection.connectivity.onConnectivityChanged.listen((event) {
-      connection.checkConnection(connectivity: connection.connectivity);
-    });
+ 
     var cubit = TestsCubit.get(context);
 
     cubit.getGeneralExamCategories().then((value) => cubit.testsTabController =
@@ -47,11 +43,7 @@ class _MainTestsScreenState extends State<MainTestsScreen>
             isLeading: true,
             titleText: 'General_Exams'.tr(),
           ),
-          body: BlocBuilder<ConnectivityCubit, ConnectivityCubitState>(
-            builder: (context, state) {
-              return !ConnectivityCubit.get(context).hasConnection? 
-             const LostInternetConnection()
-              :BuildCondition(
+          body: BuildCondition(
                   condition: state is GetGeneralExamCategoriesLoadingState,
                   builder: (context) => AppUtil.appLoader(height: 18.h),
                   fallback: (context) {
@@ -97,9 +89,8 @@ class _MainTestsScreenState extends State<MainTestsScreen>
                                                       .categoriesList[index]))))
                             ]),
                           );
-                  });
-            },
-          ),
+                  })
+           
         );
       },
     );

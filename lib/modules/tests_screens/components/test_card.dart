@@ -2,6 +2,7 @@ import 'package:elmoktaser_elshamel/models/general_exams_model.dart';
 import 'package:elmoktaser_elshamel/modules/tests_screens/components/text_icon.dart';
 import 'package:elmoktaser_elshamel/shared/components/app_text.dart';
 import 'package:elmoktaser_elshamel/shared/utilities/app_ui.dart';
+import 'package:elmoktaser_elshamel/shared/utilities/app_util.dart';
 import 'package:elmoktaser_elshamel/shared/utilities/icon_broken.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
@@ -19,15 +20,9 @@ class TestCard extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(5),
-              child: Image.network(
-                AppUi.assets.networkImageBaseLink+childs.image!,
+         AppUtil.appCachedImage( imgUrl: AppUi.assets.networkImageBaseLink+childs.image!,
                 width: 30.w,
-                height: 10.h,
-                fit: BoxFit.cover,
-              ),
-            ),
+                height: 10.h,),
             Expanded(
                 child: Padding(
               padding: EdgeInsetsDirectional.only(start: 3.w),

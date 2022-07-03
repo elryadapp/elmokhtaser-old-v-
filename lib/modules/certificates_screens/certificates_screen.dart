@@ -13,12 +13,9 @@ class CertificateScreen extends StatefulWidget {
 class _CertificateScreenState extends State<CertificateScreen> {
   @override
   void initState() {
-    var connection = ConnectivityCubit.get(context);
-    connection.connectivitySubscription =
-        connection.connectivity.onConnectivityChanged.listen((event) {
-      connection.checkConnection(connectivity: connection.connectivity);
-    });
+   
     ProfileCubit.get(context).getUserCertificates(context);
+ 
     super.initState();
   }
 
@@ -33,12 +30,8 @@ class _CertificateScreenState extends State<CertificateScreen> {
             context,
             titleText: 'Certificates'.tr(),
           ),
-          body: BlocBuilder<ConnectivityCubit, ConnectivityCubitState>(
-            builder: (context, state) {
-              return !ConnectivityCubit.get(context).hasConnection? 
-              const LostInternetConnection()
-              :BuildCondition(
-                  condition: state is GetUserCertificatesLoadingState,
+          body: BuildCondition(
+                  condition: state is GetUserCertificatesLoadingState ,
                   builder: (context) => AppUtil.appLoader(height: 18.h),
                   fallback: (context) {
                     return cubit.userCertificateModel!.data!.isEmpty
@@ -62,9 +55,8 @@ class _CertificateScreenState extends State<CertificateScreen> {
                                       certificateItem: e.value,
                                     ))
                           ]);
-                  });
-            },
-          ),
+                  })
+           
         );
       },
     );

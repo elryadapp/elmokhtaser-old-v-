@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:elmoktaser_elshamel/modules/general_screens/_exports.dart';
 
@@ -44,21 +43,17 @@ class _AboutScreenState extends State<AboutScreen> {
                                 ?.image !=
                             null)
                           AppSlideAnimation(
-                            verticalOffset: 0,
-                            horizontalOffset: -80,
-                            child: ClipRRect(
-                                borderRadius: BorderRadius.circular(5),
-                                child: Image.network(
-                                    AppUi.assets.networkImageBaseLink +
-                                        ServicesCubit.get(context)
-                                            .aboutModel!
-                                            .data!
-                                            .image!,
-                                            height:30.h,
-                                            fit: BoxFit.cover,
-                                            width: Constants.getwidth(context),
-                                            )),
-                          ),
+                              verticalOffset: 0,
+                              horizontalOffset: -80,
+                              child: AppUtil.appCachedImage(
+                                imgUrl: AppUi.assets.networkImageBaseLink +
+                                    ServicesCubit.get(context)
+                                        .aboutModel!
+                                        .data!
+                                        .image!,
+                                height: 30.h,
+                                width: Constants.getwidth(context),
+                              )),
                         Padding(
                           padding: EdgeInsets.symmetric(
                               vertical: 2.h, horizontal: 2.w),

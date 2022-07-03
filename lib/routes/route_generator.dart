@@ -132,6 +132,10 @@ class RouterGenarator {
       case Routes.lostInternetConnectionScreen:
         return MaterialPageRoute(
             builder: (context) => const LostInernetConnectionScreen());
+              case Routes.generalTest:
+        return MaterialPageRoute(
+            builder: (context) => const GeneralTestScreen());
+
       default:
         return _errorRoute();
     }
