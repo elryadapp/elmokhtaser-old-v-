@@ -1,5 +1,7 @@
 import 'package:buildcondition/buildcondition.dart';
+import 'package:elmoktaser_elshamel/blocs/connectivity_bloc.dart/connectivity_bloc_cubit.dart';
 import 'package:elmoktaser_elshamel/blocs/tests_cubit/tests_cubit.dart';
+import 'package:elmoktaser_elshamel/layout/lost_internet_connection.dart';
 import 'package:elmoktaser_elshamel/modules/tests_screens/components/general_test_list.dart';
 import 'package:elmoktaser_elshamel/shared/components/app_app_bar.dart';
 import 'package:elmoktaser_elshamel/shared/components/app_text.dart';
@@ -21,6 +23,11 @@ class _MainTestsScreenState extends State<MainTestsScreen>
     with SingleTickerProviderStateMixin {
   @override
   void initState() {
+    var connection = ConnectivityCubit.get(context);
+    connection.connectivitySubscription =
+        connection.connectivity.onConnectivityChanged.listen((event) {
+      connection.checkConnection(connectivity: connection.connectivity);
+    });
     var cubit = TestsCubit.get(context);
 
     cubit.getGeneralExamCategories().then((value) => cubit.testsTabController =
@@ -40,49 +47,59 @@ class _MainTestsScreenState extends State<MainTestsScreen>
             isLeading: true,
             titleText: 'General_Exams'.tr(),
           ),
-          body: BuildCondition(
-              condition: state is GetGeneralExamCategoriesLoadingState,
-              builder: (context) => AppUtil.appLoader(height: 18.h),
-              fallback: (context) {
-                return cubit.categoriesList.isEmpty? 
-                       Column(
-                                          children: [
-                                            AppUtil.emptyLottie(),
-                                            SizedBox(
-                                              height: 2.h,
-                                            ),
-                                             AppText(
-                                               'there_are_no_exams'.tr())
-                                          ],
-                                        )
-                :Padding(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 15, horizontal: 15),
-                  child: Column(children: [
-                    CustomTabBar(
-                      tabController: cubit.testsTabController!,
-                      tabTitlesList: cubit.testsTabTitlesList,
-                    
-                    ),
-                    Expanded(
-                        child: TabBarView(
-                            physics: const NeverScrollableScrollPhysics(),
-                            controller: cubit.testsTabController,
-                            children: List.generate(
-                                cubit.categoriesList.length,
-                                (index) =>cubit.categoriesList[index].childs!.isEmpty? 
-                                Column(
-                                  children: [
-                                    AppUtil.emptyLottie(),
-                                    SizedBox(height: 3.h,)
-                                    ,AppText('there_are_no_exams'.tr())
-                                  ],
-                                )
-                                : GeneralTestList(
-                                    childList: cubit.categoriesList[index]))))
-                  ]),
-                );
-              }),
+          body: BlocBuilder<ConnectivityCubit, ConnectivityCubitState>(
+            builder: (context, state) {
+              return !ConnectivityCubit.get(context).hasConnection? 
+             const LostInternetConnection()
+              :BuildCondition(
+                  condition: state is GetGeneralExamCategoriesLoadingState,
+                  builder: (context) => AppUtil.appLoader(height: 18.h),
+                  fallback: (context) {
+                    return cubit.categoriesList.isEmpty
+                        ? Column(
+                            children: [
+                              AppUtil.emptyLottie(),
+                              SizedBox(
+                                height: 2.h,
+                              ),
+                              AppText('there_are_no_exams'.tr())
+                            ],
+                          )
+                        : Padding(
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 15, horizontal: 15),
+                            child: Column(children: [
+                              CustomTabBar(
+                                tabController: cubit.testsTabController!,
+                                tabTitlesList: cubit.testsTabTitlesList,
+                              ),
+                              Expanded(
+                                  child: TabBarView(
+                                      physics:
+                                          const NeverScrollableScrollPhysics(),
+                                      controller: cubit.testsTabController,
+                                      children: List.generate(
+                                          cubit.categoriesList.length,
+                                          (index) => cubit.categoriesList[index]
+                                                  .childs!.isEmpty
+                                              ? Column(
+                                                  children: [
+                                                    AppUtil.emptyLottie(),
+                                                    SizedBox(
+                                                      height: 3.h,
+                                                    ),
+                                                    AppText('there_are_no_exams'
+                                                        .tr())
+                                                  ],
+                                                )
+                                              : GeneralTestList(
+                                                  childList: cubit
+                                                      .categoriesList[index]))))
+                            ]),
+                          );
+                  });
+            },
+          ),
         );
       },
     );
