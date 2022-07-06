@@ -358,16 +358,18 @@ class CoursesCubit extends Cubit<CoursesState> {
     }
   }
 
-  Future<void> updateRate(rateId, courseId) async {
+  Future<void> updateRate(rateId, courseId,context) async {
     emit(UpdateRateLoadingState());
     try {
+            Navigator.pop(context);
+
       var res = await CoursesRepositories.updateRateingToCourse(rateId, {
         "comment": commentTextEditingController.text,
         "rating": rate,
         "_method": "PUT"
       });
       if (res['status'] < 300) {
-        getCourseContentById(courseId);
+              await getCourseById(courseId,context);
 
         AppUtil.flushbarNotification(res['data']);
 

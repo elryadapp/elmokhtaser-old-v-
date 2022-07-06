@@ -227,15 +227,7 @@ class _PersonalRatingTabState extends State<PersonalRatingTab> {
                                   title: 'update_rate'.tr(),
                                   content: Padding(
                                     padding: EdgeInsets.all(2.h),
-                                    child: BuildCondition(
-                                        condition: state
-                                                is UpdateRateLoadingState ||
-                                            state
-                                                is GetCourseContentLoadingState,
-                                        builder: (context) =>
-                                            AppUtil.appLoader(height: 14.h),
-                                        fallback: (context) {
-                                          return Column(
+                                    child:Column(
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.start,
                                             mainAxisSize: MainAxisSize.min,
@@ -304,15 +296,8 @@ class _PersonalRatingTabState extends State<PersonalRatingTab> {
                                                                       true)
                                                               .id,
                                                           widget
-                                                              .coursesItem.id);
-                                                      Navigator.pushNamedAndRemoveUntil(
-                                                          context,
-                                                          Routes
-                                                              .personalCoursesDetails,
-                                                          ModalRoute.withName(
-                                                              Routes.layout),
-                                                          arguments: widget
-                                                              .coursesItem.id);
+                                                              .coursesItem.id,context);
+                                                    
                                                     },
                                                     color: AppUi
                                                         .colors.activeColor
@@ -322,9 +307,7 @@ class _PersonalRatingTabState extends State<PersonalRatingTab> {
                                                   ))
                                                 ],
                                               )
-                                            ],
-                                          );
-                                        }),
+                ])
                                   ));
                             },
                             height: 5.5.h,
