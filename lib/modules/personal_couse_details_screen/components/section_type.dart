@@ -1,6 +1,6 @@
 import 'package:elmoktaser_elshamel/blocs/courses_cubit/courses_cubit.dart';
 import 'package:elmoktaser_elshamel/models/course_content_model.dart';
-import 'package:elmoktaser_elshamel/modules/courses_screens/course_details_screens/custom_video.dart';
+import 'package:elmoktaser_elshamel/modules/course_details/components/custom_video.dart';
 import 'package:elmoktaser_elshamel/routes/app_routes.dart';
 import 'package:elmoktaser_elshamel/shared/components/app_btn.dart';
 import 'package:elmoktaser_elshamel/shared/components/app_text.dart';

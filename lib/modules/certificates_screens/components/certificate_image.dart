@@ -1,3 +1,4 @@
+import 'package:elmoktaser_elshamel/blocs/profile_cubit/profile_cubit.dart';
 import 'package:elmoktaser_elshamel/models/auth_models/user_certificates_model.dart';
 import 'package:elmoktaser_elshamel/shared/components/app_text.dart';
 import 'package:elmoktaser_elshamel/shared/constants.dart';
@@ -47,16 +48,19 @@ class CertificateImage extends StatelessWidget {
                             ]),
                             Padding(
                               padding: EdgeInsets.symmetric(vertical: 2.h),
-                              child: Row(
-                                children: [
-                                  AppText(
-                                    'created_at'.tr() + ' : ',
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                  AppText(intl.DateFormat.yMd().format(DateTime.parse(
-                                     certificateItem.createdAt ??
-                                         certificateItem.updatedAt))),
-                                ],
+                              child: Directionality(
+                                textDirection:Constants.lang=='ar'? TextDirection.rtl:TextDirection.ltr,
+                                child: Row(
+                                  children: [
+                                    AppText(
+                                      'created_at'.tr() + ' : ',
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                    AppText(intl.DateFormat.yMd().format(DateTime.parse(
+                                       certificateItem.createdAt ??
+                                           certificateItem.updatedAt))),
+                                  ],
+                                ),
                               ),
                             ),
                             AppText(
@@ -66,15 +70,16 @@ class CertificateImage extends StatelessWidget {
                               fontSize: 18.sp,
                             ),
                             Padding(
-                              padding: EdgeInsets.symmetric(vertical: 2.h),
+                              padding: EdgeInsets.symmetric(vertical: 1.2.h),
                               child: AppText(
                                 'This_certificate_is_proudly_presented_to'.tr(),
                                 fontWeight: FontWeight.w600,
+                                textAlign: TextAlign.center,
                                 fontSize: 14.sp,
                               ),
                             ),
                             AppText(
-                              Constants.userName,
+                              Constants.userName!=''? Constants.userName:ProfileCubit.get(context).userNameController.text,
                               decorationColor: const Color(0xffC99A2E),
                               fontWeight: FontWeight.w700,
                               textDecoration: TextDecoration.underline,
@@ -83,7 +88,7 @@ class CertificateImage extends StatelessWidget {
                             ),
                             Padding(
                               padding: EdgeInsets.symmetric(
-                                vertical: 2.h,
+                                vertical: 1.h,
                               ),
                               child: AppText(
                                 'certificates_note'.tr(),

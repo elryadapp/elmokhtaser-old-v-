@@ -1,6 +1,6 @@
 import 'package:buildcondition/buildcondition.dart';
 import 'package:elmoktaser_elshamel/blocs/courses_cubit/courses_cubit.dart';
-import 'package:elmoktaser_elshamel/modules/personal_couse_details_screen/attachement_item.dart';
+import 'package:elmoktaser_elshamel/modules/personal_couse_details_screen/components/attachement_item.dart';
 import 'package:elmoktaser_elshamel/shared/utilities/app_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

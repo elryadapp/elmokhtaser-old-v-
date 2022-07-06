@@ -236,32 +236,29 @@ class _SingleTestScreenState extends State<SingleTestScreen> {
                                       }
                                     }
 
-                                    return SingleChildScrollView(
-                                      physics: const BouncingScrollPhysics(),
-                                      child: cubit.qusetionList[index].hint !=
-                                              null
-                                          ? QuetionType(
-                                              index: index,
-                                              child: Padding(
-                                                padding: EdgeInsets.only(
-                                                    bottom: 2.h),
-                                                child: Card(
-                                                  child: AppListTile(
-                                                      title: 'explain_question'
-                                                          .tr(),
-                                                      content: Html(
-                                                          data: cubit
-                                                                  .qusetionList[
-                                                                      index]
-                                                                  .hint ??
-                                                              '')),
-                                                ),
+                                    return cubit.qusetionList[index].hint !=
+                                            null
+                                        ? QuetionType(
+                                            index: index,
+                                            child: Padding(
+                                              padding: EdgeInsets.only(
+                                                  bottom: 2.h),
+                                              child: Card(
+                                                child: AppListTile(
+                                                    title: 'explain_question'
+                                                        .tr(),
+                                                    content: Html(
+                                                        data: cubit
+                                                                .qusetionList[
+                                                                    index]
+                                                                .hint ??
+                                                            '')),
                                               ),
-                                              quetions: matchingQuestion)
-                                          : QuetionType(
-                                              index: index,
-                                              quetions: matchingQuestion),
-                                    );
+                                            ),
+                                            quetions: matchingQuestion)
+                                        : QuetionType(
+                                            index: index,
+                                            quetions: matchingQuestion);
                                   }),
                             ),
                             SizedBox(height: 2.h),

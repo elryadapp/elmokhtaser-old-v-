@@ -8,7 +8,7 @@ export 'package:sizer/sizer.dart';
 export 'package:easy_localization/easy_localization.dart';
 export 'package:elmoktaser_elshamel/modules/general_test_screens/components/multi_expanded_tile.dart';
 export 'package:flutter_html/flutter_html.dart';
-export 'package:elmoktaser_elshamel/modules/courses_screens/course_details_screens/custom_video.dart';
+export 'package:elmoktaser_elshamel/modules/course_details/components/custom_video.dart';
 export 'package:elmoktaser_elshamel/modules/general_test_screens/components/question_answers.dart';
 export 'package:elmoktaser_elshamel/shared/components/app_btn.dart';
 export 'package:elmoktaser_elshamel/shared/components/app_list_tile.dart';

@@ -1,5 +1,6 @@
 import 'package:elmoktaser_elshamel/blocs/connectivity_bloc.dart/connectivity_bloc_cubit.dart';
 import 'package:elmoktaser_elshamel/layout/lost_internet_connection.dart';
+import 'package:elmoktaser_elshamel/modules/course_details/components/course_details_body.dart';
 import 'package:flutter/material.dart';
 import 'package:elmoktaser_elshamel/modules/courses_screens/_exports.dart';
 
@@ -16,18 +17,19 @@ class _CourseDetailsScreenState extends State<CourseDetailsScreen>
     with SingleTickerProviderStateMixin {
   @override
   void initState() {
-    var connection = ConnectivityCubit.get(context);
-    connection.connectivitySubscription =
-        connection.connectivity.onConnectivityChanged.listen((event) {
-      connection.checkConnection(connectivity: connection.connectivity);
-    });
+
+ 
     var cubit = CoursesCubit.get(context);
     if (Constants.token != '') {
       cubit.checkCourseExitInSubscribe(widget.coursesItem.id, context);
     }
 
     cubit.detailsTabController = TabController(length: 5, vsync: this);
-
+   var connection = ConnectivityCubit.get(context);
+    connection.connectivitySubscription =
+        connection.connectivity.onConnectivityChanged.listen((event) {
+      connection.checkConnection(connectivity: connection.connectivity);
+    });
     super.initState();
   }
 
@@ -48,87 +50,11 @@ class _CourseDetailsScreenState extends State<CourseDetailsScreen>
       
               return !ConnectivityCubit.get(context).hasConnection? 
               const LostInternetConnection()
-              :BuildCondition(
-                  condition: state is CheckCourseSubscribtionLoadingState,
-                  builder: (context) => AppUtil.appLoader(),
-                  fallback: (context) {
-                    return Padding(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 5.w, vertical: 3.h),
-                      child: Column(
-                        children: [
-                          CustomVideo(
-                            videoId: widget.coursesItem.previewVideo,
-                            courseImage: widget.coursesItem.image,
-                          ),
-                          SizedBox(
-                            height: 2.h,
-                          ),
-                          Card(
-                            child: Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 5),
-                              child: TabBar(
-                                  onTap: (index) {
-                                    cubit.tabIndexChanged();
-
-                                    if (index == 1) {
-                                      cubit.getCoursesContent(
-                                          widget.coursesItem.id);
-                                    }
-                                  },
-                                  labelColor: AppUi.colors.mainColor,
-                                  isScrollable: true,
-                                  physics: const BouncingScrollPhysics(),
-                                  unselectedLabelColor:
-                                      AppUi.colors.subTitleColor,
-                                  labelPadding: EdgeInsets.zero,
-                                  labelStyle: TextStyle(
-                                      fontWeight: FontWeight.w700,
-                                      fontSize: 12.sp),
-                                  controller: cubit.detailsTabController,
-                                  tabs: [
-                                    ...cubit.courseDetailsTabList
-                                        .asMap()
-                                        .entries
-                                        .map((e) => Padding(
-                                              padding:
-                                                  const EdgeInsetsDirectional
-                                                      .only(start: 10, end: 10),
-                                              child: Tab(
-                                                text: e.value,
-                                              ),
-                                            ))
-                                  ]),
-                            ),
-                          ),
-                          Expanded(
-                              child: Padding(
-                            padding: EdgeInsets.only(bottom: 6.h),
-                            child: TabBarView(
-                              physics: const NeverScrollableScrollPhysics(),
-                              controller: cubit.detailsTabController,
-                              children: [
-                                DescriptionTab(courseItem: widget.coursesItem),
-                                const CouresContentTab(),
-                                QuestionAndAnswersTab(
-                                    courseItem: widget.coursesItem),
-                                CoursePublicBagTab(
-                                    coursesItem: widget.coursesItem),
-                                RatingTab(
-                                  coursesItem: widget.coursesItem,
-                                ),
-                              ],
-                            ),
-                          )),
-                        ],
-                      ),
-                    );
-                  });
+              : CourseDetailsBody(coursesItem: widget.coursesItem,);
             },
           ),
           bottomSheet: Constants.token != '' &&
-                  state is! CheckCourseSubscribtionLoadingState
+                  state is ! CheckCourseSubscribtionLoadingState
               ? Container(
                   height: 9.h,
                   padding: EdgeInsets.symmetric(horizontal: 4.w),
@@ -201,7 +127,9 @@ class _CourseDetailsScreenState extends State<CourseDetailsScreen>
                     ],
                   ),
                 )
-              : Container(
+              : state is CheckCourseSubscribtionLoadingState? 
+              AppUtil.appLoader(height: 12.h)
+              :Container(
                   height: 0,
                 ),
         );

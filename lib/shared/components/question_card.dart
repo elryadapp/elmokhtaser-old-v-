@@ -1,5 +1,5 @@
 import 'package:dotted_border/dotted_border.dart';
-import 'package:elmoktaser_elshamel/modules/courses_screens/course_details_screens/custom_video.dart';
+import 'package:elmoktaser_elshamel/modules/course_details/components/custom_video.dart';
 import 'package:elmoktaser_elshamel/shared/components/app_text.dart';
 import 'package:elmoktaser_elshamel/shared/constants.dart';
 import 'package:elmoktaser_elshamel/shared/utilities/app_ui.dart';

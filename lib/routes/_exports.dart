@@ -31,7 +31,7 @@ export 'package:elmoktaser_elshamel/modules/welcome_screens/splash_screen.dart';
 export  'package:elmoktaser_elshamel/routes/app_routes.dart';
 export 'package:elmoktaser_elshamel/modules/certificates_screens/certificate_view_screen.dart';
 export 'package:elmoktaser_elshamel/modules/contest_screens/single_contest_screen.dart';
-export 'package:elmoktaser_elshamel/modules/courses_screens/course_details_screens/course_details_screen.dart';
+export 'package:elmoktaser_elshamel/modules/course_details/course_details_screen.dart';
 export 'package:elmoktaser_elshamel/modules/general_screens/news/news_details_screen.dart';
 export 'package:elmoktaser_elshamel/modules/general_test_screens/answers_view_screen.dart';
 export 'package:elmoktaser_elshamel/modules/general_test_screens/multi_attempt_screen.dart';

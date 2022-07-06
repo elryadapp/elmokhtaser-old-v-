@@ -17,22 +17,17 @@ class ServicesCubit extends Cubit<ServicesState> {
   ServicesCubit() : super(ServicesInitial());
   static ServicesCubit get(context) => BlocProvider.of(context);
 
-  void changeLang(langCode, BuildContext context)async {
-    if (langCode == 'ar') {
-      context.setLocale(const Locale('ar'));
-      Constants.lang = context.locale.toString();
+  void changeLang(langCode, BuildContext context) async {
+    context.setLocale(Locale(langCode));
+    Constants.lang = context.locale.toString();
 
-    } else {
-      context.setLocale(const Locale('en'));
-      Constants.lang = context.locale.toString();
+    isLangExpanded = false;
 
-    }
-          isLangExpanded=false;
-
-     
-   await CacheHelper.assignData(key: 'lang', value: Locale(langCode).toString());
-   LayoutCubit.get(context).changeCurrentPageIndex(4);
-  Navigator.pushNamedAndRemoveUntil(context,Routes.layout, ModalRoute.withName('/'));
+    await CacheHelper.assignData(
+        key: 'lang', value: Locale(langCode).toString());
+    LayoutCubit.get(context).changeCurrentPageIndex(4);
+    Navigator.pushNamedAndRemoveUntil(
+        context, Routes.layout, ModalRoute.withName('/'));
 
     emit(LangChangeState());
   }
@@ -43,7 +38,6 @@ class ServicesCubit extends Cubit<ServicesState> {
     isLangExpanded = val;
     emit(ChangeLangExpandedState());
   }
-
 
 //================================about data=========================================
   About? aboutModel;
@@ -108,21 +102,18 @@ class ServicesCubit extends Cubit<ServicesState> {
   News? newsModel;
 
   List<NewsItem> newsList = [];
-  Future<void> getAllNewsData({page=1}) async {
-    if(page==1){
+  Future<void> getAllNewsData({page = 1}) async {
+    if (page == 1) {
       newsList = [];
-    emit(NewsLoadingState());
-    }
-    else{
+      emit(NewsLoadingState());
+    } else {
       emit(PaginationLoadingState());
     }
     try {
-      var res = await GeneralRepositories.getAllNewsData(
-        page: page
-      );
+      var res = await GeneralRepositories.getAllNewsData(page: page);
 
       newsModel = News.fromJson(res);
-      newsList.addAll( newsModel?.data ?? []);
+      newsList.addAll(newsModel?.data ?? []);
       emit(NewsLoadedState());
     } catch (error) {
       emit(NewsErrorState());
@@ -148,7 +139,5 @@ class ServicesCubit extends Cubit<ServicesState> {
   }
 
   //===================pagination data===========================
-  int page=1;
- 
-  
+  int page = 1;
 }

@@ -130,8 +130,9 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
 //=======================login================================
-  bool loginVisibality = true;
   final loginFormKey = GlobalKey<FormState>();
+    bool loginVisibality = true;
+
   IconData loginVisibilityIcon = Icons.visibility_outlined;
   void loginChangeVisibility() {
     loginVisibality = !loginVisibality;

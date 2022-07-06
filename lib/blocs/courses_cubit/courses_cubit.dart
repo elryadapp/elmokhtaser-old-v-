@@ -28,6 +28,7 @@ class CoursesCubit extends Cubit<CoursesState> {
     emit(GetCategoriesLoadingState());
     try {
       var res = await CoursesRepositories.getCourseCategories(context);
+    await     getAllCourses();
 
       categoriesModel = CategoriesModel.fromJson(res);
       categoriesList = categoriesModel?.data ?? [];
@@ -36,7 +37,6 @@ class CoursesCubit extends Cubit<CoursesState> {
         tabs.add(item.title!);
       }
 
-      emit(GetCategoriesLoadedState());
     } catch (error) {
       emit(GetCategoriesErrorState());
     }
@@ -225,6 +225,8 @@ class CoursesCubit extends Cubit<CoursesState> {
       var res = await CoursesRepositories.getCourseById(courseId);
 
       if (res['status'] < 300) {
+        await  getCourseContentById(courseId);
+
         singleCourse = CoursesItem.fromJson(res['data']);
         emit(GetSingleCourseLoadedState());
       } else {
@@ -240,6 +242,7 @@ class CoursesCubit extends Cubit<CoursesState> {
   CourseContentModel? singleCourseContentmodel;
   List<CourseContentSection>? singleCourseContentItem = [];
   Future<void> getCourseContentById(courseId) async {
+    singleCourseContentmodel=null;
     singleCourseContentItem = [];
     emit(GetCourseContentLoadingState());
     try {
@@ -333,13 +336,16 @@ class CoursesCubit extends Cubit<CoursesState> {
 //======================ratings=====================
   TextEditingController commentTextEditingController = TextEditingController();
   double rate = 0;
-  Future<void> addRate(courseId) async {
+  Future<void> addRate(context, courseId) async {
     emit(AddRateLoadingState());
     try {
+      Navigator.pop(context);
+
       var res = await CoursesRepositories.addRateToCourse(courseId,
           {"comment": commentTextEditingController.text, "rating": rate});
-      getCourseContentById(courseId);
       if (res['status'] < 300) {
+              await getCourseById(courseId,context);
+
         AppUtil.flushbarNotification(res['data']);
         emit(AddRateLoadedState());
       } else {

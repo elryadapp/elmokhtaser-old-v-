@@ -1,25 +1,12 @@
-import 'package:buildcondition/buildcondition.dart';
 import 'package:elmoktaser_elshamel/blocs/connectivity_bloc.dart/connectivity_bloc_cubit.dart';
 import 'package:elmoktaser_elshamel/blocs/courses_cubit/courses_cubit.dart';
 import 'package:elmoktaser_elshamel/layout/lost_internet_connection.dart';
-import 'package:elmoktaser_elshamel/modules/personal_couse_details_screen/course_bag_tab.dart';
-import 'package:elmoktaser_elshamel/modules/personal_couse_details_screen/course_files_tab.dart';
-import 'package:elmoktaser_elshamel/modules/personal_couse_details_screen/lessons_tab.dart';
-import 'package:elmoktaser_elshamel/modules/personal_couse_details_screen/personal_rating_tab.dart';
-import 'package:elmoktaser_elshamel/modules/personal_couse_details_screen/section_type.dart';
-import 'package:elmoktaser_elshamel/modules/personal_couse_details_screen/table_tab.dart';
-import 'package:elmoktaser_elshamel/shared/components/animated_page.dart';
+import 'package:elmoktaser_elshamel/modules/personal_couse_details_screen/components/personal_course_body.dart';
+
 import 'package:elmoktaser_elshamel/shared/components/app_app_bar.dart';
-import 'package:elmoktaser_elshamel/shared/components/app_btn.dart';
-import 'package:elmoktaser_elshamel/shared/components/app_text.dart';
-import 'package:elmoktaser_elshamel/shared/constants.dart';
-import 'package:elmoktaser_elshamel/shared/utilities/app_ui.dart';
-import 'package:elmoktaser_elshamel/shared/utilities/app_util.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_html/flutter_html.dart';
-import 'package:sizer/sizer.dart';
-import 'package:easy_localization/easy_localization.dart';
 
 class PersonalCoursesDetailsScreen extends StatefulWidget {
   final dynamic courseId;
@@ -36,19 +23,14 @@ class _PersonalCoursesDetailsScreenState
     with SingleTickerProviderStateMixin {
   @override
   void initState() {
+    var cubit = CoursesCubit.get(context);
+    cubit.personalDetailsTabController = TabController(length: 5, vsync: this);
+    cubit.getCourseById(widget.courseId, context);
     var connection = ConnectivityCubit.get(context);
     connection.connectivitySubscription =
         connection.connectivity.onConnectivityChanged.listen((event) {
       connection.checkConnection(connectivity: connection.connectivity);
     });
-    var cubit = CoursesCubit.get(context);
-    cubit.personalDetailsTabController = TabController(length: 5, vsync: this);
-    cubit.getCourseById(widget.courseId, context).then((value) {
-      if (cubit.singleCourse != null) {
-        cubit.getCourseContentById(widget.courseId);
-      }
-    });
-
     super.initState();
   }
 
@@ -65,158 +47,9 @@ class _PersonalCoursesDetailsScreenState
           ),
           body: BlocBuilder<ConnectivityCubit, ConnectivityCubitState>(
             builder: (context, state) {
-              return !ConnectivityCubit.get(context).hasConnection? 
-              const LostInternetConnection()
-              :BuildCondition(
-                  condition: state is GetCourseContentLoadingState ||
-                      state is GetSingleCourseLoadingState,
-                  builder: (context) => AppUtil.appLoader(),
-                  fallback: (context) {
-                    return state is GetSingleCourseErrorState
-                        ? Container()
-                        : cubit.isTableViewed!
-                            ? AppSlideAnimation(
-                                verticalOffset: 200,
-                                horizontalOffset: 0,
-                                child: Stack(
-                                  children: [
-                                    Html(
-                                      data: cubit.singleCourse!.courseTable!,
-                                    ),
-                                    InkWell(
-                                      onTap: () {
-                                        CoursesCubit.get(context)
-                                            .launchInBrowser(Uri.parse(
-                                                'https://emary.azq1.com/Mo5tsr/table/${cubit.singleCourse!.id}'));
-                                      },
-                                      child: Container(
-                                        height:
-                                            Constants.getHeight(context) * .6,
-                                      ),
-                                    ),
-                                    IconButton(
-                                        onPressed: () {
-                                          cubit.changeIsTableViewed();
-                                        },
-                                        icon: const Icon(Icons.close))
-                                  ],
-                                ))
-                            : cubit.singleCourseErrorMsg != null
-                                ? Center(
-                                    child: Padding(
-                                      padding:
-                                          EdgeInsets.symmetric(horizontal: 5.w),
-                                      child: AppButton(
-                                        title: cubit.singleCourseErrorMsg,
-                                      ),
-                                    ),
-                                  )
-                                : cubit.singleCourseContentItem!.isEmpty
-                                    ? Column(
-                                        children: [
-                                          AppUtil.emptyLottie(),
-                                          SizedBox(
-                                            height: 2.h,
-                                          ),
-                                          AppText(
-                                              'there_are_no_content_added_to_this_course_yet'
-                                                  .tr())
-                                        ],
-                                      )
-                                    : Column(
-                                        children: [
-                                          SectionType(
-                                              courseContent: cubit
-                                                  .singleCourseContentItem![
-                                                      cubit.sectionIndex]
-                                                  .childs![cubit.currentIndex!],
-                                              image:
-                                                  cubit.singleCourse!.image!),
-                                          Container(
-                                              width:
-                                                  Constants.getwidth(context),
-                                              color: AppUi.colors.whiteColor,
-                                              child: Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Padding(
-                                                    padding:
-                                                        EdgeInsets.symmetric(
-                                                            vertical: 2.h,
-                                                            horizontal: 3.w),
-                                                    child: AppText(
-                                                      cubit
-                                                          .singleCourse!.title!,
-                                                      fontWeight:
-                                                          FontWeight.w600,
-                                                    ),
-                                                  ),
-                                                  Divider(
-                                                    thickness: 2,
-                                                    color: AppUi.colors.bgColor,
-                                                  ),
-                                                  TabBar(
-                                                      onTap: (index) {},
-                                                      labelColor: AppUi
-                                                          .colors.mainColor,
-                                                      isScrollable: true,
-                                                      physics:
-                                                          const BouncingScrollPhysics(),
-                                                      unselectedLabelColor:
-                                                          AppUi.colors
-                                                              .subTitleColor,
-                                                      labelPadding:
-                                                          EdgeInsets.zero,
-                                                      labelStyle: TextStyle(
-                                                          fontWeight:
-                                                              FontWeight.w700,
-                                                          fontSize: 12.sp),
-                                                      controller: cubit
-                                                          .personalDetailsTabController,
-                                                      tabs: [
-                                                        ...cubit
-                                                            .personalDetailsCoursesTabList
-                                                            .asMap()
-                                                            .entries
-                                                            .map(
-                                                                (e) => SizedBox(
-                                                                      width:
-                                                                          Constants.getwidth(context) *
-                                                                              .5,
-                                                                      child:
-                                                                          Tab(
-                                                                        child: AppText(
-                                                                            e.value),
-                                                                      ),
-                                                                    ))
-                                                      ]),
-                                                ],
-                                              )),
-                                          Expanded(
-                                              child: TabBarView(
-                                            controller: cubit
-                                                .personalDetailsTabController,
-                                            children: [
-                                              LessonTab(
-                                                courseContent: cubit
-                                                    .singleCourseContentmodel!
-                                                    .data!,
-                                              ),
-                                              const TableTab(),
-                                              const CourseBagTab(),
-                                              CourseFilesTab(
-                                                courseId: widget.courseId,
-                                              ),
-                                              PersonalRatingTab(
-                                                coursesItem:
-                                                    cubit.singleCourse!,
-                                              )
-                                            ],
-                                          ))
-                                        ],
-                                      );
-                  });
+              return !ConnectivityCubit.get(context).hasConnection
+                  ? const LostInternetConnection()
+                  :PersonalCourseBody(courseId: widget.courseId);
             },
           ),
         );

@@ -1,6 +1,6 @@
 import 'package:buildcondition/buildcondition.dart';
 import 'package:elmoktaser_elshamel/blocs/courses_cubit/courses_cubit.dart';
-import 'package:elmoktaser_elshamel/modules/courses_screens/sliver_list.dart';
+import 'package:elmoktaser_elshamel/modules/courses_screens/components/sliver_list.dart';
 import 'package:elmoktaser_elshamel/modules/general_screens/components/row_btn.dart';
 import 'package:elmoktaser_elshamel/modules/layout_screens/home/courses_card.dart';
 import 'package:elmoktaser_elshamel/modules/layout_screens/home/option_card.dart';

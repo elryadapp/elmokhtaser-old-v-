@@ -53,7 +53,7 @@ class SingleTestInfoScreen extends StatelessWidget {
                 secInfo: '${childList.exams![0].questionsNumber}'),
             TestInfoBtnRow(
                 title: 'Exam_time'.tr(),
-                info: '${childList.exams![0].examTime} د ',
+                info: '${childList.exams![0].examTime} '+'m'.tr(),
                 secTitle: 'tries_count'.tr(),
                 secInfo: '${childList.exams![0].attemps}'),
             SizedBox(

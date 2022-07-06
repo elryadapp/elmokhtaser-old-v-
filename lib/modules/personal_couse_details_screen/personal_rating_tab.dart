@@ -1,7 +1,7 @@
 import 'package:buildcondition/buildcondition.dart';
 import 'package:elmoktaser_elshamel/blocs/courses_cubit/courses_cubit.dart';
 import 'package:elmoktaser_elshamel/models/courses_model.dart';
-import 'package:elmoktaser_elshamel/modules/courses_screens/course_details_screens/rating_card.dart';
+import 'package:elmoktaser_elshamel/modules/course_details/components/rating_card.dart';
 import 'package:elmoktaser_elshamel/routes/app_routes.dart';
 import 'package:elmoktaser_elshamel/shared/components/app_btn.dart';
 import 'package:elmoktaser_elshamel/shared/components/app_text.dart';
@@ -127,15 +127,7 @@ class _PersonalRatingTabState extends State<PersonalRatingTab> {
                                   title: 'add_rate'.tr(),
                                   content: Padding(
                                     padding: EdgeInsets.all(2.h),
-                                    child: BuildCondition(
-                                        condition: state
-                                                is AddRateLoadingState ||
-                                            state
-                                                is GetCourseContentLoadingState,
-                                        builder: (context) =>
-                                            AppUtil.appLoader(height: 14.h),
-                                        fallback: (context) {
-                                          return Column(
+                                    child: Column(
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.start,
                                             mainAxisSize: MainAxisSize.min,
@@ -202,10 +194,9 @@ class _PersonalRatingTabState extends State<PersonalRatingTab> {
                                                             'add_a_comment_first'
                                                                 .tr());
                                                       } else {
-                                                        await cubit.addRate(
+                                                        await cubit.addRate(context,
                                                             widget.coursesItem
                                                                 .id);
-                                                        Navigator.pop(context);
                                                       }
                                                     },
                                                     color: AppUi
@@ -217,9 +208,8 @@ class _PersonalRatingTabState extends State<PersonalRatingTab> {
                                                 ],
                                               )
                                             ],
-                                          );
-                                        }),
-                                  ));
+                                         
+                                  )));
                             },
                             height: 5.5.h,
                             title: 'add_rate'.tr()),
