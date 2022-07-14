@@ -1,6 +1,7 @@
 import 'package:elmoktaser_elshamel/models/cart_model.dart';
 import 'package:elmoktaser_elshamel/models/coupons_model.dart';
 import 'package:elmoktaser_elshamel/repos/cart_repo.dart';
+import 'package:elmoktaser_elshamel/shared/network/local/cache_helper.dart';
 import 'package:elmoktaser_elshamel/shared/utilities/app_util.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -21,9 +22,10 @@ class CartCubit extends Cubit<CartState> {
       if (res['status'] < 300) {
         cartModel = CartModel.fromJson(res);
         cartItemList = cartModel?.data ?? [];
-              couponItemList=List.generate(cartItemList.length,(index)=>null);
-              
-couponController=List.generate(cartItemList.length,(index)=>TextEditingController());
+        couponItemList = List.generate(cartItemList.length, (index) => null);
+  
+        couponController = List.generate(
+            couponItemList!.length, (index) => TextEditingController());
 
         emit(GetAllCartLoadedState());
       } else {
@@ -35,15 +37,18 @@ couponController=List.generate(cartItemList.length,(index)=>TextEditingControlle
     }
   }
 
-
   //=====================delete cart item=====================
-  Future<void> deleteCartItem(cartItemId, context) async {
+  Future<void> deleteCartItem(cartItemId,index, context) async {
     emit(DeleteCartItemLoadingState());
     try {
       var res = await CartRepositories.deleteCartItems(cartItemId);
       if (res['status'] < 300) {
         AppUtil.flushbarNotification(res['data']);
-        getAllCartItems(context);
+      CacheHelper.clearCache(key: 'couponList[$index]');
+    
+      
+
+       await getAllCartItems(context);
 
         emit(DeleteCartItemLoadedState());
       } else {
@@ -63,7 +68,8 @@ couponController=List.generate(cartItemList.length,(index)=>TextEditingControlle
       var res = await CartRepositories.addToCart(courseId);
       if (res['status'] < 300) {
         AppUtil.flushbarNotification(res['data']);
-        getAllCartItems(context);
+      
+      await  getAllCartItems(context);
 
         emit(AddToCartLoadedState());
       } else {
@@ -86,13 +92,13 @@ couponController=List.generate(cartItemList.length,(index)=>TextEditingControlle
       var res = await CartRepositories.sendCoupons(courseId, couponCode);
       if (res['status'] < 300) {
         couponItemList![index] = CouponItem.fromJson(res['data']);
-
+        await CacheHelper.assignData(
+            key: 'couponList[$index]', value: CouponItem.fromJson(res['data']).toString());
         AppUtil.flushbarNotification('coupone'.tr());
 
         emit(SendCourseCouponLoadedState());
       } else {
         AppUtil.flushbarNotification(res['data']);
-        couponItemList![index] = res['data'];
 
         emit(SendCourseCouponErrorState());
       }

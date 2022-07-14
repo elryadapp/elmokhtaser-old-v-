@@ -1,3 +1,4 @@
+import 'package:elmoktaser_elshamel/shared/network/local/cache_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:elmoktaser_elshamel/modules/card_screen/_exports.dart';
 
@@ -13,6 +14,8 @@ class CardItem extends StatelessWidget {
       listener: (context, state) {},
       builder: (context, state) {
         var cubit = CartCubit.get(context);
+        cubit.couponItemList![index]=CacheHelper.getData(key: 'couponList[$index]');
+        print( cubit.couponItemList);
         return Card(
           child: Padding(
             padding: EdgeInsets.all(2.h),
@@ -105,6 +108,7 @@ class CardItem extends StatelessWidget {
 
                                                       cubit.deleteCartItem(
                                                           coursesItem.id,
+                                                          index,
                                                           context);
                                                     },
                                                     color: AppUi
@@ -162,14 +166,7 @@ class CardItem extends StatelessWidget {
                         ),
                         Expanded(
                             flex: 2,
-                            child: BuildCondition(
-                                condition: state
-                                        is SendCourseCouponLoadingState &&
-                                    cubit.couponController[index].text != '',
-                                builder: (context) =>
-                                    AppUtil.appLoader(height: 10.h),
-                                fallback: (context) {
-                                  return AppButton(
+                            child: AppButton(
                                     onTap: () {
                                       cubit.sendCoupons(
                                           coursesItem.courseId,
@@ -179,8 +176,7 @@ class CardItem extends StatelessWidget {
                                     },
                                     title: 'enter'.tr(),
                                     height: 5.h,
-                                  );
-                                }))
+                                  ))
                       ],
                     ),
                   ),

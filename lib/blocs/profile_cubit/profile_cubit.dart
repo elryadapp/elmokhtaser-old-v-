@@ -65,6 +65,7 @@ class ProfileCubit extends Cubit<ProfileState> {
       if (res['data'] != null) {
         CacheHelper.clearCache(key: 'jwt');
         CacheHelper.clearCache(key: 'user_name');
+
         profileImage=null;
         CartCubit.get(context).cartItemList=[];
         Constants.token = '';

@@ -1,3 +1,4 @@
+import 'package:elmoktaser_elshamel/shared/network/local/cache_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:elmoktaser_elshamel/modules/card_screen/_exports.dart';
 
@@ -11,22 +12,24 @@ class CardScreen extends StatefulWidget {
 class _CardScreenState extends State<CardScreen> {
   @override
   void initState() {
-    var cubit = CartCubit.get(context);
+      var cubit = CartCubit.get(context);
+
     if (Constants.token != '') {
+          cubit.couponItemList=[];
+    cubit.couponItemList=  CacheHelper.getData(key: 'couponList').toString().split(',').toList();
       cubit.getAllCartItems(context);
     }
-
-    super.initState();
+        super.initState();
   }
-
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<CartCubit, CartState>(
       listener: (context, state) {
-    
+  
 
       },
       builder: (context, state) {
+
         var cubit = CartCubit.get(context);
         return Scaffold(
           appBar: ElmoktaserAppbar(
@@ -36,7 +39,7 @@ class _CardScreenState extends State<CardScreen> {
           ),
           body: BuildCondition(
               condition: state is GetAllCartLoadingState ||
-                  state is DeleteCartItemLoadingState,
+                  state is DeleteCartItemLoadingState||state is SendCourseCouponLoadingState ,
               builder: (context) => AppUtil.appLoader(height: 18.h),
               fallback: (context) {
                 return Constants.token == ''

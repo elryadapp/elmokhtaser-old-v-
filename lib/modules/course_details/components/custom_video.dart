@@ -42,22 +42,20 @@ class _CustomVideoState extends State<CustomVideo> {
                       child: CircleAvatar(
                           backgroundColor: !isSelected? AppUi.colors.whiteColor:AppUi.colors.bgColor,
                           radius: 3.5.h,
-                          child: Padding(
-                            padding:  EdgeInsetsDirectional.only(bottom: 1.2.h,end: 2.2.w),
-                            child: IconButton(
-                              onPressed: () {
-                                if(widget.courseId!=null){
-                                CoursesCubit.get(context).addCourseToProgress(context, widget.courseId);
-                                }
+                          child: IconButton(
+                            padding: EdgeInsets.zero,
+                            onPressed: () {
+                              if(widget.courseId!=null){
+                              CoursesCubit.get(context).addCourseToProgress(context, widget.courseId);
+                              }
 
-                                isSelected = true;
-                                setState(() {});
-                              },
-                              icon: Icon(
-                                Icons.play_arrow_rounded,
-                                color: !isSelected? AppUi.colors.mainColor:AppUi.colors.bgColor,
-                                size: 5.5.h,
-                              ),
+                              isSelected = true;
+                              setState(() {});
+                            },
+                            icon: Icon(
+                              Icons.play_arrow_rounded,
+                              color: !isSelected? AppUi.colors.mainColor:AppUi.colors.bgColor,
+                              size: 5.5.h,
                             ),
                           ))),
                 ),

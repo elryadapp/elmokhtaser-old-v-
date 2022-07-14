@@ -157,7 +157,22 @@ class _HomeScreenState extends State<HomeScreen> {
                                     ],
                                   ),
                                 ),
-                                AppSlideAnimation(
+                                 cubit.coursesList.isEmpty? 
+                                 Column(
+                                            children: [
+                                              AppUtil.emptyLottie(height: 20.h,padding: 0.0),
+                                              SizedBox(
+                                                height: 2.h,
+                                              ),
+                                              AppText(
+                                                'No_courses_have_been_added_to_this_category'
+                                                    .tr(),
+                                                fontSize: 14.sp,
+                                              ),
+                                              
+                                            ],
+                                          )
+                                 :AppSlideAnimation(
                                   horizontalOffset: 0,
                                   verticalOffset: 150,
                                   child: SizedBox(

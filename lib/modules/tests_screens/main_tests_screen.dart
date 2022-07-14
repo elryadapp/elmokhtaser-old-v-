@@ -1,7 +1,5 @@
 import 'package:buildcondition/buildcondition.dart';
-import 'package:elmoktaser_elshamel/blocs/connectivity_bloc.dart/connectivity_bloc_cubit.dart';
 import 'package:elmoktaser_elshamel/blocs/tests_cubit/tests_cubit.dart';
-import 'package:elmoktaser_elshamel/layout/lost_internet_connection.dart';
 import 'package:elmoktaser_elshamel/modules/tests_screens/components/general_test_list.dart';
 import 'package:elmoktaser_elshamel/shared/components/app_app_bar.dart';
 import 'package:elmoktaser_elshamel/shared/components/app_text.dart';

@@ -39,7 +39,6 @@ class _PersonalCoursesDetailsScreenState
     return BlocConsumer<CoursesCubit, CoursesState>(
       listener: (context, state) {},
       builder: (context, state) {
-        var cubit = CoursesCubit.get(context);
         return Scaffold(
           appBar: ElmoktaserAppbar(
             context,
