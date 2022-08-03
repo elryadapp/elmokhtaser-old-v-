@@ -417,13 +417,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.0"
-  flutter_staggered_grid_view:
-    dependency: "direct main"
-    description:
-      name: flutter_staggered_grid_view
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.6.2"
   flutter_svg:
     dependency: transitive
     description:
@@ -1047,7 +1040,7 @@ packages:
       name: video_player_android
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.3.7"
+    version: "2.3.8"
   video_player_avfoundation:
     dependency: transitive
     description:
@@ -1068,7 +1061,7 @@ packages:
       name: video_player_web
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.10"
+    version: "2.0.12"
   visibility_detector:
     dependency: transitive
     description:
@@ -1124,7 +1117,7 @@ packages:
       name: webview_flutter_android
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.8.14"
+    version: "2.9.3"
   webview_flutter_platform_interface:
     dependency: transitive
     description:
@@ -1138,7 +1131,7 @@ packages:
       name: webview_flutter_wkwebview
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.9.0"
+    version: "2.9.2"
   win32:
     dependency: transitive
     description:

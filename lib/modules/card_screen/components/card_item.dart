@@ -15,7 +15,6 @@ class CardItem extends StatelessWidget {
       builder: (context, state) {
         var cubit = CartCubit.get(context);
         cubit.couponItemList![index]=CacheHelper.getData(key: 'couponList[$index]');
-        print( cubit.couponItemList);
         return Card(
           child: Padding(
             padding: EdgeInsets.all(2.h),

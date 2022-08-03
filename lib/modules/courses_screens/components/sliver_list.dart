@@ -14,7 +14,6 @@ class AppList extends StatefulWidget {
 }
 
 class _AppListState extends State<AppList> {
-  ScrollController scrollController = ScrollController();
   @override
   void initState() {
     scrollController.addListener(() {
@@ -25,6 +24,7 @@ class _AppListState extends State<AppList> {
     });
     super.initState();
   }
+  ScrollController scrollController = ScrollController();
 
   fetchData({name}) async {
     var cubit = CoursesCubit.get(context);

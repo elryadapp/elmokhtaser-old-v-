@@ -47,6 +47,7 @@ class _CardScreenState extends State<CardScreen> {
                     : cubit.cartItemList.isEmpty
                         ? Column(
                             children: [
+                          
                               AppSlideAnimation(
                                   horizontalOffset: 0,
                                   verticalOffset: -100,
