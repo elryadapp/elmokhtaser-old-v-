@@ -210,7 +210,9 @@
 "there_is_no_more_news":"There are no more news",
 "No_courses_have_been_added_to_this_category":"No courses have been added to this category"
 ,"there_are_no_more_courses":"There are no more courses",
-"there_are_no_ratings_yet":"There are no rating yet",
+"there_are_no_ratings_yet":"There are no ratings yet",
+"there_are_no_attachment_yet":"There are no attachments yet",
+"units":"Units",
 "please_select_bank_name":"please select bank name",
 "empty_cart":"Empty Cart",
 "certificate_download":"Certificate DownLoad",
@@ -249,6 +251,9 @@
 "correct_answers":"Correct Answers",
 "wrong_answers":"Wrong Answers",
 "not_answered":"Not answered" ,
-"there_is_no_internet_connection":"There is no connection to the internet"
+"there_is_no_internet_connection":"There is no connection to the internet",
+"there_is_no_units":"There are no units",
+"show_trials":"show perivious results"
+
 
 }

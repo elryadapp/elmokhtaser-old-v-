@@ -3,6 +3,7 @@ abstract class Routes {
  
   
   static const lostInternetConnectionScreen='/lost_internet_connection';
+  static const courseUnitScreen='/course_units';
   static const notificationScreen='/notification_screen';
   static const pdfPreview='/pdf_preview';
   static const paymentScreen='/payment_screen';

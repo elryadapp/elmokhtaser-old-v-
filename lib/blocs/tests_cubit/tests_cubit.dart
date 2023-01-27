@@ -289,6 +289,25 @@ bool isVideo=false;
 //==============================get exam attempts=====================
   AttemptsModel? attemptsModel;
   List<SingleAttempt> attemptsList = [];
+  Future<void> getHomeworkExamAttempts(examId) async {
+    emit(GetGeneralExamAttempetsLoadingState());
+
+    try {
+      var res = await TestRepositories.getHomeworkExamAttempts(examId);
+      if (res['status'] < 300) {
+        attemptsModel = AttemptsModel.fromJson(res);
+        attemptsList = attemptsModel?.data ?? [];
+        isAttemptExpanded =
+            List.generate(attemptsList.length, ((index) => false));
+      }
+      emit(GetGeneralExamAttempetsLoadedState());
+    } catch (error) {
+      emit(GetGeneralExamAttempetsErrorState());
+    }
+  }
+
+//=========================get homework exam attempts=========================
+
   Future<void> getGeneralExamAttempts(examId) async {
     emit(GetGeneralExamAttempetsLoadingState());
 
@@ -305,7 +324,6 @@ bool isVideo=false;
       emit(GetGeneralExamAttempetsErrorState());
     }
   }
-
   //=========================submit contest exam Result=================
   Future<void> submitContestExam(
       {contestId, qIds, answers, contestExamId, context}) async {

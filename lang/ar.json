@@ -207,6 +207,8 @@
    "No_courses_have_been_added_to_this_category":"لم تتم إضافة أى دورات فى هذه الفئة",
    "there_are_no_more_courses":"لا يوجد المزيد من الكورسات"
   ,"there_are_no_ratings_yet":"لا يوجد تقيمات لهذا الدورة بعد",
+  "there_are_no_attachment_yet":"لا يوجد ملحقات لهذا الدورة بعد",
+"units":"الوحدات",
   "please_select_bank_name":"من فضلك اختار اسم البنك",
   "empty_cart":"السلة فارغة",
   "certificate_download":"تحميل الشهادة",
@@ -245,5 +247,7 @@
   "correct_answers":"الإجابات الصحيحة",
   "wrong_answers":"الإجابات الخاطئة",
   "not_answered":"بدون إجابة",
-  "there_is_no_internet_connection":"لا يوجد اتصال بالشبكة"
+  "there_is_no_internet_connection":"لا يوجد اتصال بالشبكة",
+  "there_is_no_units":"لا يوجد لديك وحدات",
+  "show_trials":"نتيجة المحاولات السابقة"
 }

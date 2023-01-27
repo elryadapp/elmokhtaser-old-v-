@@ -71,3 +71,9 @@ class AddRateErrorState extends   CoursesState {}
 class UpdateRateLoadingState extends CoursesState {}
 class UpdateRateLoadedState extends  CoursesState {}
 class UpdateRateErrorState extends   CoursesState {}
+
+
+//==================get course units state=============
+class GetCourseUnitsLoadingState extends CoursesState {}
+class GetCourseUnitsLoadedState extends  CoursesState {}
+class GetCourseUnitsErrorState extends   CoursesState {}

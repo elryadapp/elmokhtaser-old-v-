@@ -30,7 +30,6 @@ dependencies:
   intl: ^0.17.0
   dotted_border: ^2.0.0
   alert: ^2.0.1
-  better_player: ^0.0.82
   shared_preferences: ^2.0.15
   slide_countdown: ^0.2.4
   image_picker: ^0.8.5+3
@@ -47,7 +46,14 @@ dependencies:
   connectivity_plus: ^2.3.5
   cached_network_image: ^3.2.0
   drag_and_drop_lists: ^0.3.2+2
+  vimeo_video_player:
+   git:
+     url: https://github.com/Hadeer-Sherif/vimeo_video_player.git
+     ref: master
+   
   flutter_html: ^2.2.1
+  flutter_widget_from_html_core: ^0.8.5+3
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

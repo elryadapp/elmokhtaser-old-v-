@@ -1,4 +1,5 @@
 
+import 'package:elmoktaser_elshamel/modules/personal_couse_details_screen/course_unit_screen.dart';
 import 'package:elmoktaser_elshamel/routes/_exports.dart';
 import 'package:flutter/material.dart';
 
@@ -10,6 +11,8 @@ class RouterGenarator {
 
       case Routes.splash:
         return MaterialPageRoute(builder: (context) => const SplashScreen());
+        case Routes.courseUnitScreen:
+        return MaterialPageRoute(builder: (context) =>  CourseUnitScreen(courseId:settings.arguments));
       case Routes.onBoarding:
         return MaterialPageRoute(
             builder: (context) => const OnBoardingScreen());

@@ -28,7 +28,7 @@ class CoursesCubit extends Cubit<CoursesState> {
     emit(GetCategoriesLoadingState());
     try {
       var res = await CoursesRepositories.getCourseCategories(context);
-    await     getAllCourses();
+      await getAllCourses();
 
       categoriesModel = CategoriesModel.fromJson(res);
       categoriesList = categoriesModel?.data ?? [];
@@ -36,7 +36,6 @@ class CoursesCubit extends Cubit<CoursesState> {
       for (var item in categoriesList) {
         tabs.add(item.title!);
       }
-
     } catch (error) {
       emit(GetCategoriesErrorState());
     }
@@ -218,14 +217,16 @@ class CoursesCubit extends Cubit<CoursesState> {
 
   CoursesItem? singleCourse;
   String? singleCourseErrorMsg;
-  Future<void> getCourseById(courseId, context) async {
+  Future<void> getCourseById(courseId,context,{int? unitId }) async {
     singleCourseErrorMsg = null;
     emit(GetSingleCourseLoadingState());
     try {
       var res = await CoursesRepositories.getCourseById(courseId);
 
       if (res['status'] < 300) {
-        await  getCourseContentById(courseId);
+        if(unitId!=null){
+        await getCourseContentById(unitId);
+        }
 
         singleCourse = CoursesItem.fromJson(res['data']);
         emit(GetSingleCourseLoadedState());
@@ -242,7 +243,7 @@ class CoursesCubit extends Cubit<CoursesState> {
   CourseContentModel? singleCourseContentmodel;
   List<CourseContentSection>? singleCourseContentItem = [];
   Future<void> getCourseContentById(courseId) async {
-    singleCourseContentmodel=null;
+    singleCourseContentmodel = null;
     singleCourseContentItem = [];
     emit(GetCourseContentLoadingState());
     try {
@@ -344,7 +345,7 @@ class CoursesCubit extends Cubit<CoursesState> {
       var res = await CoursesRepositories.addRateToCourse(courseId,
           {"comment": commentTextEditingController.text, "rating": rate});
       if (res['status'] < 300) {
-              await getCourseById(courseId,context);
+        await getCourseById(courseId, context);
 
         AppUtil.flushbarNotification(res['data']);
         emit(AddRateLoadedState());
@@ -358,10 +359,10 @@ class CoursesCubit extends Cubit<CoursesState> {
     }
   }
 
-  Future<void> updateRate(rateId, courseId,context) async {
+  Future<void> updateRate(rateId, courseId, context) async {
     emit(UpdateRateLoadingState());
     try {
-            Navigator.pop(context);
+      Navigator.pop(context);
 
       var res = await CoursesRepositories.updateRateingToCourse(rateId, {
         "comment": commentTextEditingController.text,
@@ -369,7 +370,7 @@ class CoursesCubit extends Cubit<CoursesState> {
         "_method": "PUT"
       });
       if (res['status'] < 300) {
-              await getCourseById(courseId,context);
+        await getCourseById(courseId, context);
 
         AppUtil.flushbarNotification(res['data']);
 
@@ -381,6 +382,29 @@ class CoursesCubit extends Cubit<CoursesState> {
       }
     } catch (error) {
       emit(UpdateRateErrorState());
+    }
+  }
+
+  //======================get course units========================
+  CourseContentModel? courseUnits;
+  List<CourseContentSection>unitsList=[];
+  Future<void> getCourseUnits(courseId, context) async {
+    emit(GetCourseUnitsLoadingState());
+    try {
+      var res = await CoursesRepositories.getCourseUnits(courseId);
+
+      if (res['status'] < 300) {
+       courseUnits=CourseContentModel.fromJson(res);
+       unitsList=courseUnits?.data??[];
+
+
+        emit(GetSingleCourseLoadedState());
+      } else {
+        AppUtil.flushbarNotification(res['data']);
+        emit(GetCourseUnitsLoadedState());
+      }
+    } catch (error) {
+      emit(GetCourseUnitsErrorState());
     }
   }
 }

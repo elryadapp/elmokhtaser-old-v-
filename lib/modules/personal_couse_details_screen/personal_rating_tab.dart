@@ -42,12 +42,15 @@ class _PersonalRatingTabState extends State<PersonalRatingTab> {
   @override
   Widget build(BuildContext context) {
     return widget.coursesItem.comments!.isEmpty
-        ? Column(
-            children: [
-              Lottie.asset(AppUi.assets.empty, height: 30.h),
-              AppText('there_are_no_ratings_yet'.tr())
-            ],
-          )
+        ? SingleChildScrollView(
+          physics: const BouncingScrollPhysics(),
+          child: Column(
+              children: [
+                          AppUtil.emptyLottie(padding: 2.h),
+                AppText('there_are_no_ratings_yet'.tr())
+              ],
+            ),
+        )
         : BlocBuilder<CoursesCubit, CoursesState>(
             builder: (context, state) {
               var cubit = CoursesCubit.get(context);

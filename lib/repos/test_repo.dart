@@ -49,6 +49,15 @@ class TestRepositories {
 
 
 
+ //==================get homework exam attempts===============
+  static Future<Map<String, dynamic>> getHomeworkExamAttempts(examId) async {
+    var res = await DioHelper.getData(
+        url: '${ApiEndPoints.homeworkExamAttempts}/$examId',
+        token: 'Bearer ${Constants.token}');
+    return res.data;
+  }
+
+
   //==================get user exames===================
   static Future<Map<String, dynamic>> getUserExam() async {
     var res = await DioHelper.getData(

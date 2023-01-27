@@ -10,12 +10,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
 import 'package:slide_countdown/slide_countdown.dart';
 import 'package:easy_localization/easy_localization.dart' as tr;
+import 'package:vimeo_video_player/vimeo_video_player.dart';
+
 class SectionType extends StatelessWidget {
-  final Childs courseContent;
+  final CourseContentChilds courseContent;
   final String image;
-  const SectionType(
-      {Key? key, required this.courseContent, required this.image,  })
-      : super(key: key);
+  const SectionType({
+    Key? key,
+    required this.courseContent,
+    required this.image,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +47,7 @@ class SectionType extends StatelessWidget {
                         Padding(
                           padding: EdgeInsets.symmetric(vertical: 2.h),
                           child: AppText(
-                            '('+'exam'.tr()+')',
+                            '(' + 'exam'.tr() + ')',
                             fontSize: 14.sp,
                           ),
                         ),
@@ -96,18 +100,44 @@ class SectionType extends StatelessWidget {
                           padding: EdgeInsets.symmetric(
                             vertical: 2.h,
                           ),
-                          child: AppButton(
-                            title:courseContent.progressable==1? 'result_show'.tr():'start_now'.tr(),
-                            onTap: () {
-                              if(courseContent.progressable==1){
-                                Navigator.pushNamed(context, Routes.testTrial,arguments: [courseContent.id,null]);
-                              }
-                              else{
-                              Navigator.pushNamed(context, Routes.singleTest,
-                                  arguments: [courseContent.id, courseContent.examTime]);}
-                            },
+                          child: Row(
+                            children: [
+                              if (courseContent.attemptsBefore != 0)
+                                Expanded(
+                                  child: AppButton(
+                                    height: 5.5.h,
+                                    title: 'show_trials'.tr(),
+                                    fontSize: 1.8.h,
+                                    onTap: () {
+                                      Navigator.pushNamed(
+                                          context, Routes.multiAttemptScreen,
+                                          arguments:[null,courseContent.id]);
+                                    },
+                                  ),
+                                ),
+                              SizedBox(
+                                width: 3.w,
+                              ),
+                              if (courseContent.attemptsBefore! <
+                                  courseContent.attemptsCount!)
+                                Expanded(
+                                  child: AppButton(
+                                    fontSize: 1.8.h,
+                                    height: 5.5.h,
+                                    title: 'start_now'.tr(),
+                                    onTap: () {
+                                      Navigator.pushNamed(
+                                          context, Routes.singleTest,
+                                          arguments: [
+                                            courseContent.id,
+                                            courseContent.examTime
+                                          ]);
+                                    },
+                                  ),
+                                )
+                            ],
                           ),
-                        )
+                        ),
                       ],
                     ),
                   ),
@@ -131,7 +161,7 @@ class SectionType extends StatelessWidget {
                             Padding(
                               padding: EdgeInsets.symmetric(vertical: 2.h),
                               child: AppText(
-                                '('+'homework'.tr()+')',
+                                '(' + 'homework'.tr() + ')',
                                 fontSize: 14.sp,
                               ),
                             ),
@@ -158,15 +188,46 @@ class SectionType extends StatelessWidget {
                               padding: EdgeInsets.symmetric(
                                 vertical: 2.h,
                               ),
-                              child: AppButton(
-                                title: 'start_now'.tr(),
-                                onTap: () {
-                                  Navigator.pushNamed(
-                                    context,
-                                    Routes.singleTest,
-                                     arguments: [courseContent.id, null]
-                                  );
-                                },
+                              child: Row(
+                                children: [
+                                  if (courseContent.attemptsBefore != 0)
+                                    Expanded(
+                                      child: AppButton(
+                                        height: 5.5.h,
+                                        title: 'show_trials'.tr(),
+                                        fontSize: 1.8.h,
+                                        onTap: () {
+                                      
+
+                                          Navigator.pushNamed(
+                                            context,
+                                            Routes.multiAttemptScreen,
+                                            arguments: [null,courseContent.id],
+                                          );
+                                        },
+                                      ),
+                                    ),
+                                  SizedBox(
+                                    width: 3.w,
+                                  ),
+                                  if (courseContent.attemptsBefore! <
+                                      courseContent.attemptsCount!)
+                                    Expanded(
+                                      child: AppButton(
+                                        title: 'start_now'.tr(),
+                                        height: 5.5.h,
+                                        fontSize: 1.8.h,
+                                        onTap: () {
+                                          Navigator.pushNamed(
+                                              context, Routes.singleTest,
+                                              arguments: [
+                                                courseContent.id,
+                                                null
+                                              ]);
+                                        },
+                                      ),
+                                    ),
+                                ],
                               ),
                             )
                           ],
@@ -202,13 +263,15 @@ class SectionType extends StatelessWidget {
                                 ),
                                 DateTime.parse(courseContent.zoomTime)
                                             .difference(DateTime.now())
-                                            .inMinutes <=0
-                                        
+                                            .inMinutes <=
+                                        0
                                     ? BlocBuilder<CoursesCubit, CoursesState>(
                                         builder: (context, state) {
                                           return InkWell(
                                             onTap: () {
-                                                                              CoursesCubit.get(context).addCourseToProgress(context, courseContent.id);
+                                              CoursesCubit.get(context)
+                                                  .addCourseToProgress(context,
+                                                      courseContent.id);
 
                                               CoursesCubit.get(context)
                                                   .launchInBrowser(Uri.parse(
@@ -220,7 +283,8 @@ class SectionType extends StatelessWidget {
                                               padding: EdgeInsets.symmetric(
                                                   vertical: 2.h),
                                               child: AppText(
-                                                courseContent.liveUrl??courseContent.recordedUrl,
+                                                courseContent.liveUrl ??
+                                                    courseContent.recordedUrl,
                                                 color: AppUi.colors.mainColor,
                                                 textAlign: TextAlign.center,
                                                 textDecoration:
@@ -251,6 +315,19 @@ class SectionType extends StatelessWidget {
                           ),
                         ),
                       )
-                    : Container();
+                    : courseContent.type == 'note'
+                        ? Container(
+                            margin: EdgeInsets.symmetric(
+                                horizontal: 5.w, vertical: 10.h),
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 5.w, vertical: 3.h),
+                            decoration: BoxDecoration(
+                                color: AppUi.colors.activeColor.withOpacity(.3),
+                                borderRadius: BorderRadius.circular(8)),
+                            child: AppText(
+                              courseContent.desc ?? '',
+                            ),
+                          )
+                        : Container();
   }
 }

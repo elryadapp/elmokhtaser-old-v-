@@ -21,8 +21,6 @@ export  'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dar
 export 'package:lottie/lottie.dart';
 export 'package:elmoktaser_elshamel/modules/course_details/components/rating_card.dart';
 
-export 'package:better_player/better_player.dart';
-export 'package:elmoktaser_elshamel/shared/components/custom_video/custom_video.dart';
 export 'package:elmoktaser_elshamel/blocs/cart_cubit/cart_cubit.dart';
 export 'package:elmoktaser_elshamel/modules/course_details/course_public_bag_tab.dart';
 export 'package:elmoktaser_elshamel/modules/course_details/components/custom_video.dart';

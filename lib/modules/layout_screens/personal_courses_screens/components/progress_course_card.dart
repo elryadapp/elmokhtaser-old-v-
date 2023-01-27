@@ -18,7 +18,7 @@ class ProgressCourseCard extends StatelessWidget {
       builder: (context, state) {
         return InkWell(
           onTap: () {
-            Navigator.pushNamed(context, Routes.personalCoursesDetails,arguments:coursesItem.id );
+            Navigator.pushNamed(context, Routes.courseUnitScreen,arguments:coursesItem.id );
           },
           child: Card(
             child: Padding(

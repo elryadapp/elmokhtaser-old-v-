@@ -92,7 +92,7 @@ class GeneralTestCard extends StatelessWidget {
                     }
                     else{
                        Navigator.pushNamed(context, Routes.multiAttemptScreen,
-                        arguments: generalExamItem.id);
+                        arguments: [generalExamItem.id,null]);
                     }
                   },
                   height: 5.h,

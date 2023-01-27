@@ -14,7 +14,17 @@ class MultiAttemptScreen extends StatefulWidget {
 class _MultiAttemptScreenState extends State<MultiAttemptScreen> {
   @override
   void initState() {
-    TestsCubit.get(context).getGeneralExamAttempts(widget.attemptId);
+            TestsCubit.get(context).selected = -1;
+
+    if(widget.attemptId[0]!=null){
+
+    TestsCubit.get(context).getGeneralExamAttempts(widget.attemptId[0]);
+
+    }
+    else{
+    TestsCubit.get(context).getHomeworkExamAttempts(widget.attemptId[1]);
+
+    }
     super.initState();
   }
 
@@ -37,7 +47,7 @@ class _MultiAttemptScreenState extends State<MultiAttemptScreen> {
                   key:Key( cubit.selected.toString()),
                   physics: const BouncingScrollPhysics(),
                   itemBuilder: (context, index) => MultiExpandedTile(
-                      singleAttempt: cubit.attemptsList[index],title:index),
+                      singleAttempt: cubit.attemptsList[index],title:index,isHomework: widget.attemptId[1]!=null,),
                   itemCount: cubit.attemptsList.length,
                 );
               }),

@@ -11,6 +11,7 @@ class CoursesRepositories {
     return res.data;
   }
 
+
   //======================allcourses========================
   static Future<Map<String, dynamic>> getAllCourses(page) async {
     dynamic res;
@@ -54,6 +55,16 @@ class CoursesRepositories {
     return res.data;
   }
 
+ //====================get course unit==============================
+
+  static Future<Map<String, dynamic>> getCourseUnits(courseId) async {
+    var res = await DioHelper.getData(
+      url: '${ApiEndPoints.courseUnits}/$courseId',
+      token: 'Bearer ${Constants.token}'
+    );
+    return res.data;
+  }
+
 //================================course attachment=====================
 
   static Future<Map<String, dynamic>> getCoursesAttachment(courseId) async {
@@ -83,7 +94,7 @@ class CoursesRepositories {
   static Future<Map<String, dynamic>> getCourseContentById(courseId) async {
     var res = await DioHelper.getData(
       token: 'Bearer ${Constants.token}',
-      url: '${ApiEndPoints.singleCourseContent}/$courseId',
+      url: '${ApiEndPoints.courseContent}/$courseId',
     );
     return res.data;
   }

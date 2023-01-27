@@ -45,4 +45,7 @@ class ApiEndPoints {
   static const getCartItems='get-cart-items';
   static const rateCourse='rate-course';
   static const updateRateCourse='update-rate-course';
+  static const courseUnits='units-api';
+
+  static const homeworkExamAttempts='exam-attempts-api';
 }

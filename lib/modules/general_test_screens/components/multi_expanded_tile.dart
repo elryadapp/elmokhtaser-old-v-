@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 
 class MultiExpandedTile extends StatelessWidget {
   final SingleAttempt? singleAttempt;
+  final bool? isHomework;
   final int? title;
-  const MultiExpandedTile({Key? key, this.singleAttempt, this.title})
+  const MultiExpandedTile(
+      {Key? key, this.singleAttempt, this.title, this.isHomework = false})
       : super(key: key);
 
   @override
@@ -27,7 +29,13 @@ class MultiExpandedTile extends StatelessWidget {
                       if (val) {
                         cubit.selected = title;
                         cubit.changeAttemptExpanedState();
-                        cubit.getContestExamResult(singleAttempt!.id, context);
+                        if (isHomework!) {
+                          cubit.getCoursesExamResult(
+                              singleAttempt!.id, context);
+                        } else {
+                          cubit.getContestExamResult(
+                              singleAttempt!.id, context);
+                        }
                       } else {
                         cubit.selected = -1;
                         cubit.changeAttemptExpanedState();
@@ -42,13 +50,13 @@ class MultiExpandedTile extends StatelessWidget {
                               : AppUi.colors.subTitleColor,
                           size: 2.h,
                         )),
-                    title: AppText('attempt'.tr()+' (${title! + 1})'),
+                    title: AppText('attempt'.tr() + ' (${title! + 1})'),
                     children: [
                       BuildCondition(
-                          condition: state is GetContestExamResultLoadingState,
+                          condition: state is GetContestExamResultLoadingState||state is GetExameResultLoadingState,
                           builder: (context) => AppUtil.appLoader(height: 13.h),
                           fallback: (context) {
-                            if (state is GetContestExamResultLoadedState) {
+                            if (state is GetContestExamResultLoadedState||state is GetExameResultLoadedState) {
                               return TrialDetails(
                                 studentData: cubit.sutdentExamResultModel!,
                               );
