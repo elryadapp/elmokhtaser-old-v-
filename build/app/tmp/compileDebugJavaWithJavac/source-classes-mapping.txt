@@ -1,0 +1,4 @@
+io/flutter/plugins/GeneratedPluginRegistrant.java
+ io.flutter.plugins.GeneratedPluginRegistrant
+com/elryad/elmoktaser/BuildConfig.java
+ com.elryad.elmoktaser.BuildConfig
